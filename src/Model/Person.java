@@ -16,13 +16,11 @@ public abstract class Person {
     }
     //Password encryption method
     private String encryptPassword(String password) {
-        String encryptedPassword = "";
-        return encryptedPassword;
+        return password;
     }
     //Password decryption method
     private String decryptPassword(){
-        String decryptedPassword = "";
-        return decryptedPassword;
+        return password;
     }
     //Get userID
     public String getUserID() { return userID; }
@@ -38,4 +36,9 @@ public abstract class Person {
     void setUserType(UserType userType){ this.userType = userType; }
     //Get userType method
     public String getUserType() { return userType.name(); }
+
+    //Check password
+    boolean checkPassword(String password){
+        return decryptPassword().equals(password);
+    }
 }

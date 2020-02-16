@@ -10,12 +10,22 @@ public class PurchasedProduct {
         reviewed = false;
         this.quantityBought = quantityBought;
     }
-
-    void reviewProduct(){
+    //Edit quantity
+    void updateQuantity(int quantityBought){
+        this.quantityBought += quantityBought;
+    }
+    //Set to reviewed
+    boolean reviewProduct(){
         if(!alreadyReviewed())
             reviewed = true;
+        return true;
     }
+    //Check if product already reviewed
     boolean alreadyReviewed(){
         return reviewed;
+    }
+    //Equals method
+    public boolean equals(String serialNum){
+        return this.serialNum.equals(serialNum);
     }
 }

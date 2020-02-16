@@ -27,4 +27,8 @@ public class CreditCard {
     private int decryptInt(int i){
         return i;
     }
+    //Equals method
+    boolean equals(String cardNum){
+        return this.cardNum.equals(cardNum);
+    }
 }
