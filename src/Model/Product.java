@@ -11,9 +11,10 @@ public class Product {
     private double price;
     private ArrayList<String> tags;
     private float score;
-    private File image;
+    private File pic;
+    private int quantity;
 
-    public Product(String serialNum, String name, String description, String color, double price, ArrayList<String> tags, float score, File pic) {
+    public Product(String serialNum, String name, String description, String color, double price, ArrayList<String> tags, float score, File pic, int quantity) {
         this.serialNum = serialNum;
         this.name = name;
         this.description = description;
@@ -22,6 +23,15 @@ public class Product {
         this.tags = tags;
         this.score = score;
         setImage(pic);
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void updateQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getSerialNum() {
@@ -90,6 +100,16 @@ public class Product {
     }
 
     public Product deepCopy() {
-        return null;
+        ArrayList<String> tagss = new ArrayList<>();
+        for(String tag: tags) {
+            tagss.add(new String(tag.toCharArray()));
+        }
+
+        return new Product(new String(serialNum.toCharArray()), new String(name.toCharArray()), new String(description.toCharArray()), new String(color.toCharArray()),
+                price, tagss, score, new File(pic.getPath()), quantity);
+    }
+
+    public boolean equals(String serialNum) {
+        return this.serialNum.equals(serialNum);
     }
 }
