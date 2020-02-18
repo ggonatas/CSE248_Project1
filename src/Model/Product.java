@@ -8,14 +8,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Product implements Serializable {
-    private String serialNum, name, description, color;
+    private String serialNum, name, description, color, pic;
     private double price;
     private ArrayList<String> tags;
     private float score;
-    private File pic;
     private int quantity;
 
-    public Product(String serialNum, String name, String description, String color, double price, ArrayList<String> tags, float score, File pic, int quantity) {
+    public Product(String serialNum, String name, String description, String color, double price, ArrayList<String> tags, float score, String pic, int quantity) {
         this.serialNum = serialNum;
         this.name = name;
         this.description = description;
@@ -91,9 +90,10 @@ public class Product implements Serializable {
         this.score = score;
     }
 
-    public void setImage(File pic) {
+    public void setImage(String pic) {
+        File image = new File(pic);
         try {
-            BufferedImage bi = ImageIO.read(pic);
+            BufferedImage bi = ImageIO.read(image);
             ImageIO.write(bi, "jpg", new File("productImages/" + name + ".jpg"));
         }
         catch (IOException e) {
@@ -107,7 +107,7 @@ public class Product implements Serializable {
         }
 
         return new Product(new String(serialNum.toCharArray()), new String(name.toCharArray()), new String(description.toCharArray()), new String(color.toCharArray()),
-                price, tagss, score, new File(pic.getPath()), quantity);
+                price, tagss, score, new String(pic.toCharArray()), quantity);
     }
 
     public boolean equals(String serialNum) {
