@@ -13,6 +13,7 @@ public class Product implements Serializable {
     private ArrayList<String> tags;
     private float score;
     private int quantity;
+    File image;
 
     public Product(String serialNum, String name, String description, String color, double price, ArrayList<String> tags, float score, String pic, int quantity) {
         this.serialNum = serialNum;
@@ -22,6 +23,7 @@ public class Product implements Serializable {
         this.price = price;
         this.tags = tags;
         this.score = score;
+        this.pic = pic;
         setImage(pic);
         this.quantity = quantity;
     }
@@ -91,7 +93,7 @@ public class Product implements Serializable {
     }
 
     public void setImage(String pic) {
-        File image = new File(pic);
+        image = new File(pic);
         try {
             BufferedImage bi = ImageIO.read(image);
             ImageIO.write(bi, "jpg", new File("productImages/" + name + ".jpg"));
