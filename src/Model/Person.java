@@ -8,11 +8,12 @@ public abstract class Person {
     private Address address;
 
     Person(String userID, String password, String firstName, String lastName, String middleName,
-           String suffix, String prefix){
+           String suffix, String prefix, String email){
         this.userID = userID;
         this.password = encryptPassword(password);
         name = new Name(firstName, lastName, middleName, suffix, prefix);
         address = new Address();
+        address.setEmail(email);
     }
     //Password encryption method
     private String encryptPassword(String password) {
@@ -23,15 +24,34 @@ public abstract class Person {
         return password;
     }
     //Get userID
-    public String getUserID() { return userID; }
+    public String getUserID() { return new String(userID.toCharArray()); }
+    //Get password
+    String getPassword() { return decryptPassword(); }
+
+    //Get first name
+    public String getFirstName(){ return name.getFirstName(); }
+    //Get last name
+    public String getLastName(){ return name.getLastName(); }
+    //Get middle name
+    public String getMiddleName(){ return name.getMiddleName(); }
+    //Get name suffix
+    public String getSuffix(){ return name.getSuffix(); }
+    //Get name prefix
+    public String getPrefix(){ return name.getPrefix(); }
+
     //Get address
     public String getAddress(){ return address.getFullAddress(); }
+    //Get email value from Address object
+    public String getEmail(){ return address.getEmail(); }
     //Set email value in Address object. Returns false for an invalid email address, true if successful.
     public boolean setEmail(String email){ return address.setEmail(email); }
     //Set address method
     public void setAddress(String street, String city, String state, String zipCode) {
         address.setAddress(street, city, StateName.getStateValue(state), zipCode);
     }
+    //Set address method passing a new Address object
+    void setAddress(Address newAddress){ this.address = newAddress.deepCopy(); }
+    Address getAddressObject() { return address; }
     //Set userType method
     void setUserType(UserType userType){ this.userType = userType; }
     //Get userType method
@@ -40,5 +60,10 @@ public abstract class Person {
     //Check password
     boolean checkPassword(String password){
         return decryptPassword().equals(password);
+    }
+
+    //Equals method
+    public boolean equals(String userID){
+        return this.userID.equals(userID);
     }
 }

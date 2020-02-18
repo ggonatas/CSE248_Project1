@@ -1,14 +1,16 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Customer extends Person {
+public class Customer extends Person implements Serializable {
     private ArrayList<PurchasedProduct> purchaseHistory;
     private ArrayList<CreditCard> creditCardList;
 
     public Customer(String userID, String password, String firstName, String lastName, String middleName,
-                    String suffix, String prefix){
-        super(userID, password, firstName, lastName, middleName, suffix, prefix);
+                    String suffix, String prefix, String email){
+        super(userID, password, firstName, lastName, middleName, suffix, prefix, email);
         setUserType(UserType.CUSTOMER);
         purchaseHistory = new ArrayList<>();
         creditCardList = new ArrayList<>();
@@ -63,5 +65,19 @@ public class Customer extends Person {
             return false;
         }
         return false;
+    }
+    //Deep copy method
+    public Customer deepCopy(){
+        Customer copy = new Customer(this.getUserID(), getPassword(), getFirstName(), getLastName(), getMiddleName(),
+                getSuffix(), getPrefix(), getEmail());
+        copy.setUserType(UserType.CUSTOMER);
+        PurchasedProduct [] historyArray = Arrays.copyOf(purchaseHistory.toArray(new PurchasedProduct [0]), purchaseHistory.size());
+        ArrayList<PurchasedProduct> newHistory = new ArrayList<>(Arrays.asList(historyArray));
+        CreditCard [] cardArray = Arrays.copyOf(creditCardList.toArray(new CreditCard [0]), creditCardList.size());
+        ArrayList<CreditCard> newCardList = new ArrayList<>(Arrays.asList(cardArray));
+        copy.purchaseHistory = newHistory;
+        copy.creditCardList = newCardList;
+        copy.setAddress(getAddressObject());
+        return copy;
     }
 }

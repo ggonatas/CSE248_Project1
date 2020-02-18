@@ -15,16 +15,36 @@ public class Name {
         this.prefix = prefix;
     }
 
-    public String getFirstName() { return firstName; }
+    public String getFirstName() { return new String(firstName.toCharArray()); }
     public String getLastName() {
-        return lastName;
+        return new String(lastName.toCharArray());
     }
-    public String getMiddleName() { return middleName; }
-    public String getSuffix() { return suffix; }
-    public String getPrefix() { return prefix; }
+    public String getMiddleName() { return new String(middleName.toCharArray()); }
+    public String getSuffix() { return new String(suffix.toCharArray()); }
+    public String getPrefix() { return new String(prefix.toCharArray()); }
+    public String getFullName() {
+        String fullName = "";
+        if(! prefix.equals("")){
+            fullName += prefix;
+        }
+        if(! firstName.equals("")){
+            fullName += firstName;
+        }
+        if(! middleName.equals("")){
+            fullName += middleName;
+        }
+        if(! lastName.equals("")){
+            fullName += lastName;
+        }
+        if(! suffix.equals("")){
+            fullName += suffix;
+        }
+        return fullName;
+    }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setMiddleName(String middleName) { this.middleName = middleName; }
     public void setSuffix(String suffix) { this.suffix = suffix; }
     public void setPrefix(String prefix) { this.prefix = prefix; }
+
 }

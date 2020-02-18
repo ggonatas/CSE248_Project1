@@ -25,7 +25,7 @@ public class Address {
     String getCity() { return new String(city.toCharArray()); }
     String getState() { return state.getStateName(); }
     String getZipCode() { return new String(zipCode.toCharArray()); }
-    String getEmail() { return email; }
+    String getEmail() { return new String(email.toCharArray()); }
 
     String getFullAddress(){
         return street + "\n" + city + ", " + state + " " + zipCode;
@@ -44,5 +44,15 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+    }
+    //Deep copy method
+    public Address deepCopy(){
+        Address copy = new Address();
+        copy.street = getStreet();
+        copy.city = getCity();
+        copy.state = StateName.getStateValue(getState());
+        copy.zipCode = getZipCode();
+        copy.email = getEmail();
+        return copy;
     }
 }

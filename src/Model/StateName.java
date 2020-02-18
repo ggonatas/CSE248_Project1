@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum StateName {
     AK("Alaska", "AK"), AL("Alabama", "AL"), AR("Arkansas", "AR"), AS("American Samoa", "AS"), AZ("Arizona", "AZ"), CA("California", "CA"),
-    CO("Colorado", "CO"), CT("Conneticut", "CT"), DC("District of Columbia", "DC"), DE("Delaware", "DE"), FL("Florida", "FL"), GA("Georgia", "GA"),
+    CO("Colorado", "CO"), CT("Connecticut", "CT"), DC("District of Columbia", "DC"), DE("Delaware", "DE"), FL("Florida", "FL"), GA("Georgia", "GA"),
     GU("Guam", "GU"), HI("Hawaii", "HI"), IA("Iowa", "IA"), ID("Idaho", "ID"), IL("Illinois", "IL"), IN("Indiana", "IN"), KS("Kansas", "KS"),
     KY("Kentucky", "KY"), LA("Louisiana", "LA"), MA("Massachusetts", "MA"), MD("Maryland", "MD"), ME("Maine", "ME"), MI("Michigan", "MI"),
     MN("Minnesota", "MN"), MO("Missouri", "MO"), MP("Northern Mariana Islands", "MP"), MS("Mississippi", "MS"), MT("Montana", "MT"), NC("North Carolina", "NC"),
