@@ -55,7 +55,7 @@ public class Customer extends Person implements Serializable {
     }
     //Remove a credit card
     public boolean removeCreditCard(String password, String cardNum){
-        if(this.checkPassword(password)){
+        if(this.verifyPassword(password)){
             for(CreditCard card : creditCardList){
                 if(card.equals(cardNum)){
                     creditCardList.remove(card);
@@ -70,6 +70,7 @@ public class Customer extends Person implements Serializable {
     public Customer deepCopy(){
         Customer copy = new Customer(this.getUserID(), getPassword(), getFirstName(), getLastName(), getMiddleName(),
                 getSuffix(), getPrefix(), getEmail());
+        copy.setPasswordSalt(getPasswordSalt());
         copy.setUserType(UserType.CUSTOMER);
         PurchasedProduct [] historyArray = Arrays.copyOf(purchaseHistory.toArray(new PurchasedProduct [0]), purchaseHistory.size());
         ArrayList<PurchasedProduct> newHistory = new ArrayList<>(Arrays.asList(historyArray));

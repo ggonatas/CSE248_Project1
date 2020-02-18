@@ -3,6 +3,7 @@ package Model;
 public abstract class Person {
     private String userID;
     private String password;
+    private String passwordSalt;
     private Name name;
     private UserType userType;
     private Address address;
@@ -10,24 +11,24 @@ public abstract class Person {
     Person(String userID, String password, String firstName, String lastName, String middleName,
            String suffix, String prefix, String email){
         this.userID = userID;
-        this.password = encryptPassword(password);
+        this.passwordSalt = PasswordUtils.getSalt(30);
+        this.password = PasswordUtils.generateSecurePassword(password, passwordSalt);
         name = new Name(firstName, lastName, middleName, suffix, prefix);
         address = new Address();
         address.setEmail(email);
     }
-    //Password encryption method
-    private String encryptPassword(String password) {
-        return password;
-    }
-    //Password decryption method
-    private String decryptPassword(){
-        return password;
+    //Password verification method
+    public boolean verifyPassword(String password){
+        return PasswordUtils.verifyUserPassword(password, this.password, passwordSalt);
     }
     //Get userID
     public String getUserID() { return new String(userID.toCharArray()); }
-    //Get password
-    String getPassword() { return decryptPassword(); }
-
+    //Get encrypted password
+    String getPassword(){ return new String(password.toCharArray()); }
+    //Get password salt
+    String getPasswordSalt(){ return new String(passwordSalt.toCharArray()); }
+    //Set password salt
+    void setPasswordSalt(String passwordSalt) {this.passwordSalt = new String(passwordSalt.toCharArray()); }
     //Get first name
     public String getFirstName(){ return name.getFirstName(); }
     //Get last name
@@ -56,11 +57,6 @@ public abstract class Person {
     void setUserType(UserType userType){ this.userType = userType; }
     //Get userType method
     public String getUserType() { return userType.name(); }
-
-    //Check password
-    boolean checkPassword(String password){
-        return decryptPassword().equals(password);
-    }
 
     //Equals method
     public boolean equals(String userID){
