@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.MainController">
+<VBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainController">
     <MenuBar>
         <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" text="Close" />
@@ -28,7 +28,7 @@
             <MenuItem mnemonicParsing="false" text="About" />
         </Menu>
     </MenuBar>
-    <AnchorPane prefHeight="376.0" prefWidth="600.0">
+    <AnchorPane prefHeight="376.0" prefWidth="600.0" style="-fx-background-color: white;">
         <GridPane layoutX="173.0" layoutY="163.0" prefHeight="131.0" prefWidth="289.0" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="163.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.5999755859375" minWidth="10.0" prefWidth="88.79998779296875" />
@@ -50,11 +50,11 @@
                     <Insets left="20.0" />
                 </GridPane.margin>
             </Label>
-            <PasswordField prefHeight="26.0" prefWidth="185.0" promptText="6-15 alphanumeric, !, *, #, %, ^" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField promptText="between 6 and 15 characters" GridPane.columnIndex="1" />
-            <Button id="login_button" mnemonicParsing="false" onAction="#loginUser" prefHeight="26.0" prefWidth="175.0" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="pwfPassword" prefHeight="26.0" prefWidth="185.0" promptText="6-15 alphanumeric, !, *, #, %, ^" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtUserID" promptText="between 6 and 15 characters" GridPane.columnIndex="1" />
+            <Button id="login_button" fx:id="btnLogin" mnemonicParsing="false" onAction="#loginUser" prefHeight="26.0" prefWidth="175.0" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button id="register_button" mnemonicParsing="false" prefHeight="26.0" prefWidth="181.0" text="Register New Account" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button id="register_button" mnemonicParsing="false" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: white; -fx-border-color: white;" text="Register New Account" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button id="register_button" fx:id="btnRegister" mnemonicParsing="false" onAction="#getRegisterUserPage" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: white; -fx-border-color: white; -fx-underline: true;" text="Register New Account" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         </GridPane>
         <ImageView fitHeight="89.0" fitWidth="254.0" layoutX="191.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@login_logo.png" />

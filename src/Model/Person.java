@@ -58,6 +58,11 @@ public abstract class Person {
     //Get userType method
     public String getUserType() { return userType.name(); }
 
+    //Check if a UserID is valid
+    public static boolean validUserID(String userID){
+        String regex = "^[\\w]*";
+        return userID.matches(regex) && userID.length() >= 6 && userID.length() <=15;
+    }
     //Equals method
     public boolean equals(String userID){
         return this.userID.equals(userID);
