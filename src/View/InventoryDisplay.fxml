@@ -24,7 +24,7 @@
             <top>
                 <ToolBar prefHeight="40.0" prefWidth="640.0">
                     <items>
-                        <Button fx:id="HomeBtn" mnemonicParsing="false" onAction="#showHome">
+                        <Button fx:id="HomeBtn" mnemonicParsing="false" onAction="#showInventoryDisplay">
                             <graphic>
                                 <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -123,15 +123,9 @@
                             <content>
                                 <FlowPane>
                                     <children>
-                                        <Button fx:id="Product1Btn" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#Display" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
-                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
+                                        <Button fx:id="Product1Btn" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#showProductDisplay" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 1" />
+                                        <Button fx:id="Product2Btn" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#showProductDisplay" prefHeight="126.0" prefWidth="133.0" text="Example Shirt 2" />
+                                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="126.0" prefWidth="133.0" text="Extra Button" />
                                     </children>
                                 </FlowPane>
                             </content>

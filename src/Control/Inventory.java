@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Inventory implements Serializable {
     private HashMap<String, Product> inventory;
 
-    Inventory(){
+    public Inventory(){
         inventory =  new HashMap<>();
     }
     //Add an item to inventory

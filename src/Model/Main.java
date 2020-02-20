@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import Control.Inventory;
+import java.util.ArrayList;
 
 public class Main extends Application {
     static Parent root;
@@ -21,6 +23,16 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
+        Inventory inventory = new Inventory();
+        Product p1 = new Product("1", "Shirt 1", "SWag1", "Black",
+                10.0, new ArrayList<>(), 0.0f, "pic1.jpg", 1);
+        Product p2 = new Product("2", "Sweatshirt", "SWag2", "Red",
+                20.0, new ArrayList<>(), 0.0f, "pic2.jpg", 1);
+        inventory.addToInventory(p1, p1.getQuantity());
+        inventory.addToInventory(p2, p2.getQuantity());
+        inventory.saveToFile();
+
         launch(args);
     }
 

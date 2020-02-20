@@ -1,23 +1,17 @@
 package View;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import Model.Main;
-import javafx.fxml.Initializable;
+import Control.Inventory;
+import Model.Product;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author campd
- */
 public class ProductDisplayController {
 
     private int quantity = 1;
@@ -28,7 +22,13 @@ public class ProductDisplayController {
     private Label quantityLabel = new Label(Integer.toString(quantity));
 
     @FXML
-    private Button DecreaseQuantityBtn, IncreaseQuantityBtn, HomeBtn;
+    private Label ProductDescriptionLabel, ProductNameLabel, ProductRatingLabel, ProductPriceLabel;
+
+    @FXML
+    private ImageView ProductImage;
+
+    @FXML
+    private Button DecreaseQuantityBtn, IncreaseQuantityBtn;
 
     @FXML
     void DecreaseQuantity() {
@@ -51,12 +51,20 @@ public class ProductDisplayController {
     }
 
     @FXML
-    void showHome() throws IOException {
+    void showInventoryDisplay() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("InventoryDisplay.fxml"));
         Main.getScene().setRoot(root);
         Main.getStage().show();
     }
 
-    public void initialize() { }
+    public void initialize() {
+        Inventory inventory = Inventory.loadFromFile();
+        Product p = inventory.getProduct(String.valueOf(1));
+        ProductNameLabel.setText(p.getName());
+        ProductDescriptionLabel.setText(p.getDescription());
+        //ProductImage.setImage(); Product needs a getPic class, that at least returns image filename
+        ProductRatingLabel.setText("Rating: " + p.getScore() + "/5");
+        ProductPriceLabel.setText("$" + p.getPrice());
+    }
 
 }
