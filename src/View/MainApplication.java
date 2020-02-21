@@ -18,10 +18,12 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        personList = PersonList.loadFromFile();
         root = FXMLLoader.load(getClass().getResource("login_page.fxml"));
         scene = new Scene(root,650, 400);
         stage = primaryStage;
         stage.setScene(scene);
         stage.show();
+
     }
 }

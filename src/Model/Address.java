@@ -31,10 +31,13 @@ public class Address {
         return street + "\n" + city + ", " + state + " " + zipCode;
     }
 
-    boolean setEmail(String email){
+    public static boolean isValidEmail(String email){
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        if(email.matches(regex)){
-            this.email = email;
+        return email.matches(regex);
+    }
+    boolean setEmail(String email){
+        if(isValidEmail(email)){
+            this.email = new String(email.toCharArray());
             return true;
         }
         else return false;

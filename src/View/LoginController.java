@@ -8,29 +8,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class MainController {
+public class LoginController {
+    PersonList personList = MainApplication.personList;
+    @FXML
+    Parent root;
     @FXML
     private Button btnLogin;
     @FXML
     private TextField txtUserID;
     @FXML
     private PasswordField pwfPassword;
-    @FXML
-    private Button btnRegister;
-    @FXML
-    private Button btnGuestLogin;
-    @FXML
-    private VBox rootPane;
-
-    public void initialize(){}
 
     @FXML
     public void loginUser(ActionEvent event){
@@ -46,10 +37,9 @@ public class MainController {
         }
     }
     @FXML
-    public void getRegisterUserPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("register_page.fxml"));
-        MainApplication.scene.setRoot(root);
-        MainApplication.stage.show();
+    public void getRegisterUserPage() throws IOException {
+        MainApplication.root = FXMLLoader.load(getClass().getResource("register_page.fxml"));
+        MainApplication.scene.setRoot(MainApplication.root);
 
     }
 }

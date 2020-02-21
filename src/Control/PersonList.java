@@ -3,15 +3,19 @@ package Control;
 import java.io.*;
 import java.util.Collection;
 import java.util.HashMap;
+
+import Model.Administrator;
 import Model.Person;
 import Model.Name;
 
 public class PersonList implements Serializable {
 	private HashMap<String, Person> personlist;
+    private Administrator admin = new Administrator("admin", "adminPassword123");
 
-    public PersonList(){
+    public PersonList() {
         personlist =  new HashMap<String, Person>();
     }
+
     
     //Save personlist to file personlist.sav
     public void saveToFile(){
@@ -36,7 +40,10 @@ public class PersonList implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return newpersonlist;
+        if(newpersonlist != null) {
+            return newpersonlist;
+        }
+        else return new PersonList();
     }
     
     //Add person to personlist
@@ -69,6 +76,11 @@ public class PersonList implements Serializable {
     //Get a person in personlist by userID
     public Person getPerson(String userID){
         return personlist.get(userID);
+    }
+
+    //Check if person is in list based on UserID
+    public boolean personInList(String userID){
+        return personlist.containsKey(userID);
     }
 
 }
