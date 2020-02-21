@@ -2,14 +2,12 @@ package View;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import Control.Inventory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import Model.Main;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -23,8 +21,13 @@ public class InventoryDisplayController {
     @FXML
     private VBox rightVBox;
 
+    /**
+     * @param serialNum
+     * loads ProductDisplay.fxml and sets it as root
+     * loads product by its serialNum and updates root with the products info
+     */
     @FXML
-    void showProductDisplay() {
+    void showProductDisplayBySerialNum(String serialNum) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDisplay.fxml"));
             Parent newRoot = loader.load();
@@ -32,23 +35,13 @@ public class InventoryDisplayController {
             Main.getStage().show();
 
             ProductDisplayController productDisplayController = loader.getController();
-            productDisplayController.showProductByProductID(1);
+            productDisplayController.showProductBySerialNum(serialNum);
         }catch (IOException ex) { System.err.println(ex); }
     }
 
-    @FXML
-    void showProductDisplay(int i) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDisplay.fxml"));
-            Parent newRoot = loader.load();
-            Main.getScene().setRoot(newRoot);
-            Main.getStage().show();
-
-            ProductDisplayController productDisplayController = loader.getController();
-            productDisplayController.showProductByProductID(i);
-        }catch (IOException ex) { System.err.println(ex); }
-    }
-
+    /**
+     * loads InventoryDisplay.fxml
+     */
     @FXML
     void showInventoryDisplay() {
         try{
@@ -59,23 +52,28 @@ public class InventoryDisplayController {
         }catch (IOException ex) { System.err.println(ex); }
     }
 
+    /**
+     * adds a button for each product in inventory to InventoryDisplay
+     * each button calls showProductDisplayBySerialNum with its products' serialNum
+     */
     void createProductButtons(){
         Inventory inventory = Inventory.loadFromFile();
         int i = 1;
         while(!(inventory.getProduct(String.valueOf(i)) == null)){
-            int productID = i;
+            String serialNum = String.valueOf(i);
             //String imagePath = inventory.getProduct(String.valueOf(i)).getImage);
             Button button = new Button(inventory.getProduct(String.valueOf(i)).getName());
             button.setPrefSize(133,126);
-            button.setOnAction(a -> showProductDisplay(productID));
+            button.setOnAction(a -> showProductDisplayBySerialNum(serialNum));
             buttonPane.getChildren().add(button);
             i++;
         }
     }
 
-    public void initialize() {
-        createProductButtons();
-
+    /**
+     * @return an ArrayList of the names of all products in inventory
+     */
+    ArrayList<String> getProductNames(){
         ArrayList<String> productNames = new ArrayList<>();
         Inventory inventory = Inventory.loadFromFile();
         int i=1;
@@ -83,6 +81,16 @@ public class InventoryDisplayController {
             productNames.add(inventory.getProduct(String.valueOf(i)).getName());
             i++;
         }
+        return productNames;
+    }
+
+    /**
+     * instantiates buttons and search bar to the InventoryDisplay root
+     */
+    public void initialize() {
+        createProductButtons();
+
+        ArrayList<String> productNames = getProductNames();
         searchTextField = new searchableTextField(productNames);
         rightVBox.getChildren().add(searchTextField);
     }

@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.Pane?>
 <VBox minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProductDisplayController">
    <children>
         <ToolBar prefHeight="40.0" prefWidth="800.0">
@@ -27,6 +28,7 @@
                         <Tooltip autoHide="true" text="Home" />
                     </tooltip>
                 </Button>
+                <Pane HBox.hgrow="ALWAYS" />
                 <Button mnemonicParsing="false">
                     <graphic>
                         <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -60,14 +62,14 @@
         </Label>
       <HBox prefHeight="289.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
                     <ImageView fx:id="ProductImage" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@Image_not_found.png" />
                         </image>
                     </ImageView>
-                    <Label fx:id="ProductRatingLabel" text="Rating: X/5">
+                    <Label fx:id="ProductScoreLabel" alignment="CENTER" text="Rating: X/5" VBox.vgrow="ALWAYS">
                         <font>
                             <Font size="20.0" />
                         </font>
@@ -77,7 +79,7 @@
                     </Label>
                </children>
             </VBox>
-            <VBox HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
                     <Label fx:id="ProductDescriptionLabel" alignment="CENTER" text="Insert Description Here" VBox.vgrow="ALWAYS">
                         <font>
@@ -92,9 +94,9 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                     </Label>
-                  <HBox>
+                  <HBox alignment="CENTER">
                      <children>
-                          <Button fx:id="DecreaseQuantityBtn" mnemonicParsing="false" onAction="#DecreaseQuantity" text="-" textAlignment="CENTER">
+                          <Button fx:id="DecreaseQuantityBtn" disable="true" mnemonicParsing="false" onAction="#DecreaseQuantity" text="-" textAlignment="CENTER">
                               <font>
                                   <Font size="15.0" />
                               </font>
@@ -117,9 +119,17 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button mnemonicParsing="false" text="Add to Cart">
+                  <Label fx:id="totalLabel" text="Total">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                      <VBox.margin>
                         <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Add to Cart">
+                     <VBox.margin>
+                        <Insets />
                      </VBox.margin>
                   </Button>
                </children>

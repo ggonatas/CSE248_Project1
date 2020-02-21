@@ -33,6 +33,7 @@ public class Main extends Application {
                 50.0, new ArrayList<>(), 5.0f, "pic3.jpg", 10);
         inventory.addToInventory(p1, p1.getQuantity());
         inventory.addToInventory(p2, p2.getQuantity());
+        inventory.addToInventory(p3, p3.getQuantity());
         inventory.saveToFile();
 
         launch(args);

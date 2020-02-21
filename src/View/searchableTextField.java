@@ -1,15 +1,19 @@
 package View;
 
+import Model.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
+import javafx.scene.Parent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.util.*;
 
 public class searchableTextField extends TextField
@@ -72,6 +76,15 @@ public class searchableTextField extends TextField
             item.setOnAction(actionEvent -> {
                 setText(result);
                 entriesPopup.hide();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDisplay.fxml"));
+                    Parent newRoot = loader.load();
+                    Main.getScene().setRoot(newRoot);
+                    Main.getStage().show();
+
+                    ProductDisplayController productDisplayController = loader.getController();
+                    productDisplayController.showProductByName(result);
+                }catch (IOException ex) { System.err.println(ex); }
             });
             menuItems.add(item);
         }
