@@ -27,12 +27,17 @@ public class LoginController {
     public void loginUser(ActionEvent event){
         String userID = txtUserID.getText();
         String password = pwfPassword.getText();
-        boolean validUserID = Person.validUserID(userID);
-        boolean validPassword = PasswordUtils.isValidPassword(password);
-        if( validUserID && validPassword ){
-            Customer customer = (Customer) MainApplication.personList.getPerson(userID);
-            if(customer.verifyPassword(password)){
-                MainApplication.loggedInUser = customer;
+        if(PersonList.isAdmin(userID, password)){
+            MainApplication.loggedInUser = PersonList.admin;
+        }
+        else {
+            boolean validUserID = Person.validUserID(userID);
+            boolean validPassword = PasswordUtils.isValidPassword(password);
+            if (validUserID && validPassword) {
+                Customer customer = (Customer) MainApplication.personList.getPerson(userID);
+                if (customer.verifyPassword(password)) {
+                    MainApplication.loggedInUser = customer;
+                }
             }
         }
     }
@@ -40,6 +45,5 @@ public class LoginController {
     public void getRegisterUserPage() throws IOException {
         MainApplication.root = FXMLLoader.load(getClass().getResource("register_page.fxml"));
         MainApplication.scene.setRoot(MainApplication.root);
-
     }
 }

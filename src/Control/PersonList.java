@@ -10,7 +10,7 @@ import Model.Name;
 
 public class PersonList implements Serializable {
 	private HashMap<String, Person> personlist;
-    private Administrator admin = new Administrator("admin", "adminPassword123");
+    public static Administrator admin = new Administrator("admin", "adminPassword123");
 
     public PersonList() {
         personlist =  new HashMap<String, Person>();
@@ -82,5 +82,8 @@ public class PersonList implements Serializable {
     public boolean personInList(String userID){
         return personlist.containsKey(userID);
     }
-
+    //Check if user is administrator
+    public static boolean isAdmin(String userID, String password){
+        return admin.equals(userID) && admin.verifyPassword(password);
+    }
 }
