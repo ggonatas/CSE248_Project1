@@ -15,9 +15,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        setRoot(FXMLLoader.load(getClass().getResource("../View/InventoryDisplay.fxml")));
-        setScene(new Scene(root,650, 400));
-        setStage(primaryStage);
+        root = FXMLLoader.load(getClass().getResource("../View/InventoryDisplay.fxml"));
+        scene = new Scene(root,650, 400);
+        stage = primaryStage;
         stage.setScene(scene);
         stage.show();
     }
@@ -26,9 +26,11 @@ public class Main extends Application {
 
         Inventory inventory = new Inventory();
         Product p1 = new Product("1", "Shirt 1", "SWag1", "Black",
-                10.0, new ArrayList<>(), 0.0f, "pic1.jpg", 1);
+                10.0, new ArrayList<>(), 0.0f, "pic1.jpg", 12);
         Product p2 = new Product("2", "Sweatshirt", "SWag2", "Red",
-                20.0, new ArrayList<>(), 0.0f, "pic2.jpg", 1);
+                20.0, new ArrayList<>(), 0.0f, "pic2.jpg", 25);
+        Product p3 = new Product("3", "Pants", "A fine pair of pants", "Tan",
+                50.0, new ArrayList<>(), 5.0f, "pic3.jpg", 10);
         inventory.addToInventory(p1, p1.getQuantity());
         inventory.addToInventory(p2, p2.getQuantity());
         inventory.saveToFile();
@@ -36,27 +38,13 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static Parent getRoot() {
-        return root;
-    }
-
-    public static void setRoot(Parent root) {
-        Main.root = root;
-    }
-
     public static Scene getScene() {
         return scene;
-    }
-
-    public static void setScene(Scene scene) {
-        Main.scene = scene;
     }
 
     public static Stage getStage() {
         return stage;
     }
 
-    public static void setStage(Stage stage) {
-        Main.stage = stage;
-    }
+    public static void setRoot(Parent root) { Main.root = root; }
 }
