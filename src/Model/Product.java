@@ -101,6 +101,9 @@ public class Product implements Serializable {
         catch (IOException e) {
         }
     }
+    public File getImage(){
+        return image;
+    }
 
     public Product deepCopy() {
         ArrayList<String> tagss = new ArrayList<>();

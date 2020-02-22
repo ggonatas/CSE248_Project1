@@ -1,21 +1,20 @@
 package Control;
 
 import java.io.*;
-import java.util.Collection;
 import java.util.HashMap;
 
 import Model.Administrator;
+import Model.GuestUser;
 import Model.Person;
-import Model.Name;
 
 public class PersonList implements Serializable {
 	private HashMap<String, Person> personlist;
-    public static Administrator admin = new Administrator("admin", "adminPassword123");
+    public static final Administrator ADMIN = new Administrator("admin", "adminPassword123");
+    public static final GuestUser GUEST = new GuestUser("guest", "guestPassword123");
 
     public PersonList() {
         personlist =  new HashMap<String, Person>();
     }
-
     
     //Save personlist to file personlist.sav
     public void saveToFile(){
@@ -33,17 +32,16 @@ public class PersonList implements Serializable {
     public static PersonList loadFromFile(){
         PersonList newpersonlist = new PersonList();
         try {
+            System.out.println(new File(".").getAbsoluteFile());
             FileInputStream fInStream = new FileInputStream("personlist.sav");
             ObjectInputStream oInStream = new ObjectInputStream(fInStream);
             newpersonlist.personlist = (HashMap<String, Person>) oInStream.readObject();
             oInStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            return new PersonList();
         }
-        if(newpersonlist != null) {
-            return newpersonlist;
-        }
-        else return new PersonList();
+        return newpersonlist;
+
     }
     
     //Add person to personlist
@@ -84,6 +82,6 @@ public class PersonList implements Serializable {
     }
     //Check if user is administrator
     public static boolean isAdmin(String userID, String password){
-        return admin.equals(userID) && admin.verifyPassword(password);
+        return ADMIN.equals(userID) && ADMIN.verifyPassword(password);
     }
 }
