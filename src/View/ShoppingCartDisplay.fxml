@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="checkoutVBox" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.CheckoutDisplayController">
+<VBox fx:id="checkoutVBox" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.ShoppingCartDisplayController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="800.0">
          <items>

@@ -5,7 +5,6 @@ import java.io.IOException;
 import Model.*;
 import View.MainApplication;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
@@ -80,22 +79,16 @@ public class ProductDisplayController {
      */
     @FXML
     void showInventoryDisplay() {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/InventoryDisplay.fxml"));
-            Parent newRoot = loader.load();
-            Main.getScene().setRoot(newRoot);
-            Main.getStage().show();
-        }catch (IOException ex) { System.err.println(ex); }
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/InventoryDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
 
     @FXML
     void showCheckoutDisplay(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CheckoutDisplay.fxml"));
-            Parent newRoot = loader.load();
-            Main.getScene().setRoot(newRoot);
-            Main.getStage().show();
-        }catch (IOException ex) { System.err.println(ex); }
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/ShoppingCartDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
 
     /**
@@ -114,7 +107,7 @@ public class ProductDisplayController {
      * gets variables Name, Description, Score, and Price
      * Sets their respective label displays to reflect those variables
      */
-    void showProductBySerialNum(String serialNum) {
+    public void showProductBySerialNum(String serialNum) {
         this.serialNum = serialNum;
         product = getProductBySerialNum();
         ProductNameLabel.setText(product.getName());
@@ -124,6 +117,7 @@ public class ProductDisplayController {
         ProductPriceLabel.setText("$" + product.getPrice());
         totalLabel.setText("Total: $" + product.getPrice());
         if(product.getQuantity() == 0){
+            totalLabel.setText("Total: $0.00");
             OutOfStock(true);
         }
     }
@@ -136,6 +130,7 @@ public class ProductDisplayController {
      */
     public void showProductByName(String name) {
         this.serialNum = product.getSerialNum();
+        product = getProductBySerialNum();
         ProductNameLabel.setText(product.getName());
         ProductDescriptionLabel.setText(product.getDescription());
         //ProductImage.setImage(); Product needs a getPic class, that at least returns image filename
@@ -143,6 +138,7 @@ public class ProductDisplayController {
         ProductPriceLabel.setText("$" + product.getPrice());
         totalLabel.setText("Total: $" + product.getPrice());
         if(product.getQuantity() == 0){
+            totalLabel.setText("Total: $0.00");
             OutOfStock(true);
         }
     }

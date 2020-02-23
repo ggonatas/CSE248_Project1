@@ -1,10 +1,8 @@
 package View;
 
 import Control.ProductDisplayController;
-import Model.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
-import javafx.scene.Parent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
@@ -71,15 +69,13 @@ public class searchableTextField extends TextField
             item.setOnAction(actionEvent -> {
                 setText(result);
                 entriesPopup.hide();
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDisplay.fxml"));
-                    Parent newRoot = loader.load();
-                    Main.getScene().setRoot(newRoot);
-                    Main.getStage().show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ProductDisplay.fxml"));
+                try { MainApplication.root = loader.load(); }
+                catch (IOException e) { e.printStackTrace(); }
+                MainApplication.scene.setRoot(MainApplication.root);
 
-                    ProductDisplayController productDisplayController = loader.getController();
-                    productDisplayController.showProductByName(result);
-                }catch (IOException ex) { System.err.println(ex); }
+                ProductDisplayController productDisplayController = loader.getController();
+                productDisplayController.showProductBySerialNum(result);
             });
             menuItems.add(item);
         }

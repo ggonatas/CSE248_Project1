@@ -1,11 +1,11 @@
-package View;
+package Control;
 
 import Model.*;
+import View.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -24,7 +24,7 @@ public class LoginController {
     Stage loginSuccessStage = new Stage();
 
     @FXML
-    public void loginUser(ActionEvent event){
+    public void loginUser(){
         loginSuccess.setPadding(new Insets(50));
         loginSuccessStage.setScene(loginSuccessScene);
 
@@ -61,15 +61,14 @@ public class LoginController {
 
     static void logIn(Person person){
         MainApplication.loggedInUser = person;
-        try{
-            new Main().start(MainApplication.stage);
-        }catch (IOException ex) { System.err.println(ex); } catch (Exception e) {
-            e.printStackTrace();
-        }
+        try { MainApplication.root = FXMLLoader.load(InventoryDisplayController.class.getResource("../View/InventoryDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
     @FXML
-    public void getRegisterUserPage() throws IOException {
-        MainApplication.root = FXMLLoader.load(getClass().getResource("register_page.fxml"));
+    public void getRegisterUserPage()  {
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/register_page.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
         MainApplication.scene.setRoot(MainApplication.root);
     }
     @FXML

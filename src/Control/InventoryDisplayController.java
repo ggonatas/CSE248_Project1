@@ -3,15 +3,13 @@ package Control;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Control.ProductDisplayController;
 import Model.Inventory;
 import Model.Product;
+import View.MainApplication;
 import View.searchableTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import Model.Main;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -31,15 +29,13 @@ public class InventoryDisplayController {
      */
     @FXML
     void showProductDisplayBySerialNum(String serialNum) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ProductDisplay.fxml"));
-            Parent newRoot = loader.load();
-            Main.getScene().setRoot(newRoot);
-            Main.getStage().show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ProductDisplay.fxml"));
+        try { MainApplication.root = loader.load(); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
 
-            ProductDisplayController productDisplayController = loader.getController();
-            productDisplayController.showProductBySerialNum(serialNum);
-        }catch (IOException ex) { System.err.println(ex); }
+        ProductDisplayController productDisplayController = loader.getController();
+        productDisplayController.showProductBySerialNum(serialNum);
     }
 
     /**
@@ -47,22 +43,16 @@ public class InventoryDisplayController {
      */
     @FXML
     void showInventoryDisplay() {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/InventoryDisplay.fxml"));
-            Parent newRoot = loader.load();
-            Main.getScene().setRoot(newRoot);
-            Main.getStage().show();
-        }catch (IOException ex) { System.err.println(ex); }
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/InventoryDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
 
     @FXML
     void showCheckoutDisplay(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CheckoutDisplay.fxml"));
-            Parent newRoot = loader.load();
-            Main.getScene().setRoot(newRoot);
-            Main.getStage().show();
-        }catch (IOException ex) { System.err.println(ex); }
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/ShoppingCartDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
 
     /**

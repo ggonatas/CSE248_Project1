@@ -12,7 +12,7 @@ public class PersonList implements Serializable {
         personlist =  new HashMap<String, Person>();
     }
     
-    //Save personlist to file personlist.sav
+    //Save personlist to file personlist.txt
     public void saveToFile(){
         try {
             FileOutputStream fOutStream = new FileOutputStream("personlist.txt");
@@ -24,7 +24,7 @@ public class PersonList implements Serializable {
         }
     }
     
-    //Load personlist from file personlist.sav
+    //Load personlist from file personlist.txt
     public static PersonList loadFromFile(){
         PersonList newpersonlist = new PersonList();
         try {

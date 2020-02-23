@@ -1,10 +1,11 @@
-package View;
+package Control;
 
 import Model.Address;
 import Model.Customer;
 import Model.PasswordUtils;
 import Model.Person;
 import Model.PersonList;
+import View.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
