@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -38,6 +39,9 @@ public class MainApplication extends Application {
     }
     @Override
     public void stop(){
+        if(loggedInUser.getUserType().equals("GUEST")){
+            //TODO add guests shoppingcart contents back to inventory if they log out without checking out
+        }
         inventory.saveToFile();
         personList.saveToFile();
     }

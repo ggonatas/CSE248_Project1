@@ -74,5 +74,8 @@ public class LoginController {
     @FXML
     public void continueAsGuest() {
         MainApplication.loggedInUser = PersonList.GUEST;
+        try { MainApplication.root = FXMLLoader.load(InventoryDisplayController.class.getResource("../View/InventoryDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
 }

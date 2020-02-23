@@ -9,9 +9,11 @@ import View.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -87,7 +89,7 @@ public class RegisterController implements Initializable {
             lblVerifyEmail.setText("Invalid format.");
         }
     }
-    @FXML public void finalizeRegistration(ActionEvent event){
+    @FXML public void goToAddressPage(ActionEvent event){
         String userID = txtRegisterUserID.getText();
         String password = pwfRegisterPassword.getText();
         String confirmPassword = pwfRegisterConfirmPassword.getText();
@@ -102,10 +104,15 @@ public class RegisterController implements Initializable {
             PasswordUtils.isValidPassword(password) && password.equals(confirmPassword) &&
             Address.isValidEmail(email))
         {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/address_page.fxml"));
+            try { MainApplication.root = loader.load();}
+            catch (IOException e) { e.printStackTrace(); }
+            MainApplication.scene.setRoot(MainApplication.root);
             Customer newCustomer = new Customer(userID, password, firstName, lastName, middleName, suffix, prefix, email);
+            AddressPageController addressPageController = loader.getController();
+            addressPageController.passCustomer(newCustomer);
             personList.addToPersonList(newCustomer);
             personList.saveToFile();
-            LoginController.logIn(newCustomer);
         }
     }
 }

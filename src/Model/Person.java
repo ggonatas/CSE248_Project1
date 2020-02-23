@@ -19,6 +19,7 @@ public abstract class Person implements Serializable {
         address = new Address();
         address.setEmail(email);
     }
+
     //Password verification method
     public boolean verifyPassword(String password){
         return PasswordUtils.verifyUserPassword(password, this.password, passwordSalt);

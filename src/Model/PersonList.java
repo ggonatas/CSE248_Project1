@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class PersonList implements Serializable {
 	private HashMap<String, Person> personlist;
     public static final Administrator ADMIN = new Administrator("admin", "adminPassword123");
-    public static final GuestUser GUEST = new GuestUser("guest", "guestPassword123");
+    public static final GuestUser GUEST = new GuestUser();
 
     public PersonList() {
         personlist =  new HashMap<String, Person>();

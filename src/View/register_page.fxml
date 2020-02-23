@@ -192,7 +192,7 @@
             <GridPane.margin>
                <Insets top="10.0" />
             </GridPane.margin></ChoiceBox>
-         <Button fx:id="btnRegisterFinalize" mnemonicParsing="false" onAction="#finalizeRegistration" text="Register Account" GridPane.columnIndex="1" GridPane.rowIndex="9">
+         <Button fx:id="btnRegisterFinalize" mnemonicParsing="false" onAction="#goToAddressPage" text="Next Page" GridPane.columnIndex="1" GridPane.rowIndex="9">
             <opaqueInsets>
                <Insets top="5.0" />
             </opaqueInsets>
