@@ -25,7 +25,7 @@ public class Inventory implements Serializable {
             return updateQuantity(product, product.getQuantity() + quantity);
         }
         else{
-            inventory.put(product.getSerialNum(), product.deepCopy());
+            inventory.put(product.getSerialNum(), product);
         }
         return true;
     }
@@ -70,7 +70,7 @@ public class Inventory implements Serializable {
     //Save to file
     public void saveToFile(){
         try {
-            FileOutputStream saveFile = new FileOutputStream("inventory.sav");
+            FileOutputStream saveFile = new FileOutputStream("inventory.txt");
             ObjectOutputStream save = new ObjectOutputStream(saveFile);
             save.writeObject(inventory);
             save.close();
@@ -82,7 +82,7 @@ public class Inventory implements Serializable {
     public static Inventory loadFromFile(){
         Inventory newInventory = new Inventory();
         try {
-            FileInputStream fileInput = new FileInputStream("inventory.sav");
+            FileInputStream fileInput = new FileInputStream("inventory.txt");
             ObjectInputStream inputStream = new ObjectInputStream(fileInput);
             newInventory.setInventory((HashMap<String, Product>) inputStream.readObject());
             inputStream.close();

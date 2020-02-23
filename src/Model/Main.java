@@ -23,20 +23,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
-        Inventory inventory = new Inventory();
-        Product p1 = new Product("1", "Shirt 1", "SWag1", "Black",
-                10.0, new ArrayList<>(), 0.0f, "pic1.jpg", 12);
-        Product p2 = new Product("2", "Sweatshirt", "SWag2", "Red",
-                20.0, new ArrayList<>(), 0.0f, "pic2.jpg", 25);
-        Product p3 = new Product("3", "Pants", "A fine pair of pants", "Tan",
-                50.0, new ArrayList<>(), 5.0f, "pic3.jpg", 10);
-        inventory.addToInventory(p1, p1.getQuantity());
-        inventory.addToInventory(p2, p2.getQuantity());
-        inventory.addToInventory(p3, p3.getQuantity());
-        inventory.saveToFile();
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.saveToFile();
         launch(args);
     }
 

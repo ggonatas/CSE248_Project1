@@ -1,5 +1,7 @@
 package Model;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,13 +9,15 @@ import java.util.Arrays;
 public class Customer extends Person implements Serializable {
     private ArrayList<PurchasedProduct> purchaseHistory;
     private ArrayList<CreditCard> creditCardList;
+    private ShoppingCart shoppingCart;
 
     public Customer(String userID, String password, String firstName, String lastName, String middleName,
-                    String suffix, String prefix, String email){
+                    String suffix, String prefix, String email) {
         super(userID, password, firstName, lastName, middleName, suffix, prefix, email);
         setUserType(UserType.CUSTOMER);
         purchaseHistory = new ArrayList<>();
         creditCardList = new ArrayList<>();
+        shoppingCart = new ShoppingCart();
     }
     //Add product to purchased list
     public boolean purchaseProduct(String serialNum, int quantity){
@@ -65,6 +69,10 @@ public class Customer extends Person implements Serializable {
             return false;
         }
         return false;
+    }
+    //Get shopping cart
+    public ShoppingCart getShoppingCart(){
+        return shoppingCart;
     }
     //Deep copy method
     public Customer deepCopy(){

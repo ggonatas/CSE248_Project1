@@ -15,7 +15,7 @@ public class PersonList implements Serializable {
     //Save personlist to file personlist.sav
     public void saveToFile(){
         try {
-            FileOutputStream fOutStream = new FileOutputStream("personlist.sav");
+            FileOutputStream fOutStream = new FileOutputStream("personlist.txt");
             ObjectOutputStream oOutStream = new ObjectOutputStream(fOutStream);
             oOutStream.writeObject(personlist);
             oOutStream.close();
@@ -29,7 +29,7 @@ public class PersonList implements Serializable {
         PersonList newpersonlist = new PersonList();
         try {
             System.out.println(new File(".").getAbsoluteFile());
-            FileInputStream fInStream = new FileInputStream("personlist.sav");
+            FileInputStream fInStream = new FileInputStream("personlist.txt");
             ObjectInputStream oInStream = new ObjectInputStream(fInStream);
             newpersonlist.personlist = (HashMap<String, Person>) oInStream.readObject();
             oInStream.close();

@@ -1,4 +1,4 @@
-package Control;
+package Model;
 
 import Model.Inventory;
 import Model.Product;

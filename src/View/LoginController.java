@@ -1,13 +1,11 @@
 package View;
 
-import Model.PersonList;
-import Model.Customer;
-import Model.PasswordUtils;
-import Model.Person;
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -33,8 +31,8 @@ public class LoginController {
         String userID = txtUserID.getText();
         String password = pwfPassword.getText();
         if(PersonList.isAdmin(userID, password)){
-            MainApplication.loggedInUser = PersonList.ADMIN;
             loginSuccess.setText("Admin logged in.");
+            logIn(PersonList.ADMIN);
         }
         else {
             boolean validUserID = Person.validUserID(userID);
@@ -43,8 +41,8 @@ public class LoginController {
                 if(personList.personInList(userID)) {
                     Customer customer = (Customer) MainApplication.personList.getPerson(userID);
                     if (customer.verifyPassword(password)) {
-                        MainApplication.loggedInUser = customer;
                         loginSuccess.setText("Successfully logged in!");
+                        logIn(customer);
                     }
                     else {
                         loginSuccess.setText("Incorrect password!");
@@ -59,6 +57,15 @@ public class LoginController {
             }
         }
         loginSuccessStage.show();
+    }
+
+    static void logIn(Person person){
+        MainApplication.loggedInUser = person;
+        try{
+            new Main().start(MainApplication.stage);
+        }catch (IOException ex) { System.err.println(ex); } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void getRegisterUserPage() throws IOException {

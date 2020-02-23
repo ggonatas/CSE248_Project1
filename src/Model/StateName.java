@@ -1,9 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public enum StateName {
+public enum StateName implements Serializable {
     AK("Alaska", "AK"), AL("Alabama", "AL"), AR("Arkansas", "AR"), AS("American Samoa", "AS"), AZ("Arizona", "AZ"), CA("California", "CA"),
     CO("Colorado", "CO"), CT("Connecticut", "CT"), DC("District of Columbia", "DC"), DE("Delaware", "DE"), FL("Florida", "FL"), GA("Georgia", "GA"),
     GU("Guam", "GU"), HI("Hawaii", "HI"), IA("Iowa", "IA"), ID("Idaho", "ID"), IL("Illinois", "IL"), IN("Indiana", "IN"), KS("Kansas", "KS"),

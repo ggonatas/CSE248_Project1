@@ -2,10 +2,8 @@ package Control;
 
 import java.io.IOException;
 
-import Model.ShoppingCart;
-import Model.Main;
-import Model.Inventory;
-import Model.Product;
+import Model.*;
+import View.MainApplication;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -21,8 +19,7 @@ public class ProductDisplayController {
     private Product product;
 
     Product getProductBySerialNum(){
-        Inventory inventory = Inventory.loadFromFile();
-        Product p = inventory.getProduct(serialNum);
+        Product p = MainApplication.inventory.getProduct(serialNum);
         return p;
     }
     @FXML
@@ -152,10 +149,10 @@ public class ProductDisplayController {
 
     @FXML
     void addToCart(){
-        ShoppingCart shoppingCart = ShoppingCart.loadFromFile();
-        shoppingCart.addToCart(product,quantity);
-        shoppingCart.saveToFile();
-        product = getProductBySerialNum();
+        ShoppingCart shoppingCart = ((Customer)MainApplication.loggedInUser).getShoppingCart();
+        shoppingCart.addToCart(product.deepCopy(), quantity);
+        product.updateQuantity(product.getQuantity() - quantity);
+        MainApplication.inventory.saveToFile();
         while(quantity > product.getQuantity()){
             DecreaseQuantity();
             IncreaseQuantityBtn.setDisable(true);

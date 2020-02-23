@@ -87,7 +87,7 @@ public class RegisterController implements Initializable {
         }
     }
     @FXML public void finalizeRegistration(ActionEvent event){
-        String userID = txtRegisterUserID.getId();
+        String userID = txtRegisterUserID.getText();
         String password = pwfRegisterPassword.getText();
         String confirmPassword = pwfRegisterConfirmPassword.getText();
         String email = txtRegisterEmail.getText();
@@ -102,9 +102,9 @@ public class RegisterController implements Initializable {
             Address.isValidEmail(email))
         {
             Customer newCustomer = new Customer(userID, password, firstName, lastName, middleName, suffix, prefix, email);
-            MainApplication.loggedInUser = newCustomer;
             personList.addToPersonList(newCustomer);
             personList.saveToFile();
+            LoginController.logIn(newCustomer);
         }
     }
 }

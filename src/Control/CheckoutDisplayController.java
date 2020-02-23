@@ -1,8 +1,10 @@
 package Control;
 
+import Model.Customer;
 import Model.ShoppingCart;
 import Model.Main;
 import Model.Product;
+import View.MainApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +29,7 @@ public class CheckoutDisplayController {
     }
 
     void displayShoppingCart(){
-        ShoppingCart shoppingCart = ShoppingCart.loadFromFile();
+        ShoppingCart shoppingCart = ((Customer)MainApplication.loggedInUser).getShoppingCart();
         for(Product product : shoppingCart.getInventory().values()){
             String totalCost = String.valueOf(product.getQuantity() * product.getPrice());
             Label label = new Label(product.getQuantity()+ " " +product.getName()+": " + totalCost);
