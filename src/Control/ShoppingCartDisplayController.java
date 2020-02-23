@@ -30,19 +30,20 @@ public class ShoppingCartDisplayController {
     void checkout() {
         MainApplication.masterInventory = MainApplication.inventory;
         MainApplication.masterInventory.saveToFile();
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/address_page.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
     }
 
     void displayShoppingCart(){
         Button button = new Button("CheckOut");
         button.setOnAction(a -> checkout());
         ShoppingCart shoppingCart = ((Customer)MainApplication.loggedInUser).getShoppingCart();
-        double totalShoppingCartPrice = 0.00;
+        int itemNumber = 1;
         if(!shoppingCart.getInventory().isEmpty()) {
             for (Product product : shoppingCart.getInventory().values()) {
-                String totalCost = String.valueOf(product.getQuantity() * product.getPrice());
-                totalShoppingCartPrice += Double.parseDouble(totalCost);
-                //TODO add removing from cart button and functionality
-                Label label = new Label(product.getQuantity() + " " + product.getName() + ": $" + totalCost);
+                Button removeButton = new Button("X");
+                Label label = new Label(product.getQuantity() + " " + product.getName() + ": $" + shoppingCart.getSubtotal());
                 checkoutVBox.getChildren().add(label);
             }
         }else {
@@ -51,7 +52,7 @@ public class ShoppingCartDisplayController {
                 button.setDisable(true);
         }
 
-        Label totalPriceLabel = new Label("Total: $" + totalShoppingCartPrice);
+        Label totalPriceLabel = new Label("Total: $" + shoppingCart.getSubtotal());
         checkoutVBox.getChildren().add(totalPriceLabel);
         checkoutVBox.getChildren().add(button);
     }

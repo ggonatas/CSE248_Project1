@@ -75,7 +75,7 @@ public class searchableTextField extends TextField
                 MainApplication.scene.setRoot(MainApplication.root);
 
                 ProductDisplayController productDisplayController = loader.getController();
-                productDisplayController.showProductBySerialNum(result);
+                productDisplayController.showProductByName(result);
             });
             menuItems.add(item);
         }

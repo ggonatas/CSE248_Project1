@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import sun.applet.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -90,7 +91,7 @@ public class RegisterController implements Initializable {
             lblVerifyEmail.setText("Invalid format.");
         }
     }
-    @FXML public void goToAddressPage(ActionEvent event){
+    @FXML public void register(ActionEvent event){
         String userID = txtRegisterUserID.getText();
         String password = pwfRegisterPassword.getText();
         String confirmPassword = pwfRegisterConfirmPassword.getText();
@@ -104,18 +105,17 @@ public class RegisterController implements Initializable {
         if((! personList.personInList(userID) ) && Person.validUserID(userID) &&
             PasswordUtils.isValidPassword(password) && password.equals(confirmPassword) &&
             Address.isValidEmail(email)) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/address_page.fxml"));
+            Customer newCustomer = new Customer(userID, password, firstName, lastName, middleName, suffix, prefix, email);
+            MainApplication.loggedInUser = newCustomer;
+            personList.addToPersonList(newCustomer);
+            personList.saveToFile();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/InventoryDisplay.fxml"));
             try {
                 MainApplication.root = loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             MainApplication.scene.setRoot(MainApplication.root);
-            Customer newCustomer = new Customer(userID, password, firstName, lastName, middleName, suffix, prefix, email);
-            AddressPageController addressPageController = loader.getController();
-            addressPageController.passCustomer(newCustomer);
-            personList.addToPersonList(newCustomer);
-            personList.saveToFile();
         }else {
             Label label = new Label("Some field(s) have incorrect values");
             gridPane.add(label,1,10);

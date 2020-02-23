@@ -129,7 +129,7 @@ public class ProductDisplayController {
      * Sets their respective label displays to reflect those variables
      */
     public void showProductByName(String name) {
-        this.serialNum = product.getSerialNum();
+        this.serialNum = MainApplication.inventory.getProductByName(name).getSerialNum();
         product = getProductBySerialNum();
         ProductNameLabel.setText(product.getName());
         ProductDescriptionLabel.setText(product.getDescription());
