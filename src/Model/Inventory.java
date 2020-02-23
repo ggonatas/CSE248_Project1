@@ -22,7 +22,7 @@ public class Inventory implements Serializable {
     //Add an item to inventory
     public boolean addToInventory(Product product, int quantity){
         if(inventory.containsValue(product)){
-            return updateQuantity(product, quantity);
+            return updateQuantity(product, product.getQuantity() + quantity);
         }
         else{
             inventory.put(product.getSerialNum(), product.deepCopy());

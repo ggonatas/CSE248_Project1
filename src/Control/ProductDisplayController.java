@@ -18,6 +18,7 @@ public class ProductDisplayController {
 
     private String serialNum;
     private int quantity = 1;
+    private Product product;
 
     Product getProductBySerialNum(){
         Inventory inventory = Inventory.loadFromFile();
@@ -118,7 +119,7 @@ public class ProductDisplayController {
      */
     void showProductBySerialNum(String serialNum) {
         this.serialNum = serialNum;
-        Product product = getProductBySerialNum();
+        product = getProductBySerialNum();
         ProductNameLabel.setText(product.getName());
         ProductDescriptionLabel.setText(product.getDescription());
         //ProductImage.setImage(); Product needs a getPic class, that at least returns image filename
@@ -137,8 +138,6 @@ public class ProductDisplayController {
      * Sets their respective label displays to reflect those variables
      */
     public void showProductByName(String name) {
-        Inventory inventory = Inventory.loadFromFile();
-        Product product = inventory.getProductByName(name);
         this.serialNum = product.getSerialNum();
         ProductNameLabel.setText(product.getName());
         ProductDescriptionLabel.setText(product.getDescription());
@@ -153,7 +152,6 @@ public class ProductDisplayController {
 
     @FXML
     void addToCart(){
-        Product product = getProductBySerialNum();
         ShoppingCart shoppingCart = ShoppingCart.loadFromFile();
         shoppingCart.addToCart(product,quantity);
         shoppingCart.saveToFile();

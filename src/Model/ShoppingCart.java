@@ -13,11 +13,12 @@ public class ShoppingCart extends Inventory implements Serializable {
     }
 
     //Add to cart method
-    public boolean addToCart(Product product, int quantity){
+    public void addToCart(Product product, int quantity){
         subtotal += product.getPrice() * quantity;
         itemCount =+ quantity;
-        updateQuantity(product, product.getQuantity() - quantity);
-        return super.addToInventory(product.deepCopy(), quantity);
+        Product p = product.deepCopy();
+        addToInventory(p, quantity);
+        updateQuantity(p,quantity);
     }
 
     //Remove from cart method
@@ -26,13 +27,9 @@ public class ShoppingCart extends Inventory implements Serializable {
         int quantity = itemToRemove.getQuantity();
         subtotal -= itemToRemove.getPrice() * quantity;
         itemCount -= quantity;
-        return super.removeFromInventory(serialNum);
+        return removeFromInventory(serialNum);
     }
 
-    //Update an items quantity
-    public boolean updateQuantity(Product product, int quantity){
-        return super.updateQuantity(product, quantity);
-    }
 
     public void saveToFile(){
         try {
