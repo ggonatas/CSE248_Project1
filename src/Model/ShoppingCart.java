@@ -1,7 +1,6 @@
 package Model;
 
-import java.io.*;
-import java.util.HashMap;
+import java.io.Serializable;
 
 public class ShoppingCart extends Inventory implements Serializable {
     private double subtotal;
