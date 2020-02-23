@@ -12,6 +12,10 @@ public class ShoppingCart extends Inventory implements Serializable {
         itemCount = 0;
     }
 
+    public double getSubtotal() {
+        return subtotal;
+    }
+
     //Add to cart method
     public void addToCart(Product product, int quantity){
         subtotal += product.getPrice() * quantity;

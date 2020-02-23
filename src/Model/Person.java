@@ -43,6 +43,8 @@ public abstract class Person implements Serializable {
     //Get name prefix
     public String getPrefix(){ return name.getPrefix(); }
 
+    public String getFullName(){ return name.getFullName(); }
+
     //Get address
     public String getAddress(){ return address.getFullAddress(); }
     //Get email value from Address object
