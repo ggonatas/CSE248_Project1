@@ -148,7 +148,6 @@ public class ProductDisplayController {
         ShoppingCart shoppingCart = ((Customer)MainApplication.loggedInUser).getShoppingCart();
         shoppingCart.addToCart(product.deepCopy(), quantity);
         product.updateQuantity(product.getQuantity() - quantity);
-        MainApplication.inventory.saveToFile();
         while(quantity > product.getQuantity()){
             DecreaseQuantity();
             IncreaseQuantityBtn.setDisable(true);

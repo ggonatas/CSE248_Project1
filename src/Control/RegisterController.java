@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,7 @@ public class RegisterController implements Initializable {
     @FXML TextField txtRegisterLastName;
     @FXML ChoiceBox<String> cbxPrefixChoice;
     @FXML ChoiceBox<String> cbxSuffixChoice;
-    @FXML private Button btnRegisterFinalize;
+    @FXML GridPane gridPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -102,17 +103,22 @@ public class RegisterController implements Initializable {
 
         if((! personList.personInList(userID) ) && Person.validUserID(userID) &&
             PasswordUtils.isValidPassword(password) && password.equals(confirmPassword) &&
-            Address.isValidEmail(email))
-        {
+            Address.isValidEmail(email)) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/address_page.fxml"));
-            try { MainApplication.root = loader.load();}
-            catch (IOException e) { e.printStackTrace(); }
+            try {
+                MainApplication.root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             MainApplication.scene.setRoot(MainApplication.root);
             Customer newCustomer = new Customer(userID, password, firstName, lastName, middleName, suffix, prefix, email);
             AddressPageController addressPageController = loader.getController();
             addressPageController.passCustomer(newCustomer);
             personList.addToPersonList(newCustomer);
             personList.saveToFile();
+        }else {
+            Label label = new Label("Some field(s) have incorrect values");
+            gridPane.add(label,1,10);
         }
     }
 }

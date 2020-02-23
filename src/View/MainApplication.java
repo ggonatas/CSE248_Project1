@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 public class MainApplication extends Application {
 
     public static PersonList personList = new PersonList();
-    public static Inventory inventory;
+    public static Inventory masterInventory, inventory;
     public static Person loggedInUser;
     public static Parent root;
     public static Scene scene;
@@ -39,30 +38,29 @@ public class MainApplication extends Application {
     }
     @Override
     public void stop(){
-        if(loggedInUser.getUserType().equals("GUEST")){
-            //TODO add guests shoppingcart contents back to inventory if they log out without checking out
-        }
-        inventory.saveToFile();
+        masterInventory.saveToFile();
+        ((Customer) loggedInUser).getShoppingCart().getInventory().clear();
         personList.saveToFile();
     }
 
     public static void main(String[] args) {
-        File inventoryfile = new File("inventory.txt");
-        if(inventoryfile.exists()) {
-            inventory = Inventory.loadFromFile();
+        File masterInventoryfile = new File("inventory.txt");
+        if(masterInventoryfile.exists()) {
+            masterInventory = Inventory.loadFromFile();
         }else{
-            inventory = new Inventory();
+            masterInventory = new Inventory();
             Product p1 = new Product("1", "Shirt 1", "SWag1", "Black",
                     10.0, new ArrayList<>(), 0.0f, "pic1.jpg", 12);
             Product p2 = new Product("2", "Sweatshirt", "SWag2", "Red",
                     20.0, new ArrayList<>(), 0.0f, "pic2.jpg", 25);
             Product p3 = new Product("3", "Pants", "A fine pair of pants", "Tan",
                     50.0, new ArrayList<>(), 5.0f, "pic3.jpg", 10);
-            inventory.addToInventory(p1, p1.getQuantity());
-            inventory.addToInventory(p2, p2.getQuantity());
-            inventory.addToInventory(p3, p3.getQuantity());
-            inventory.saveToFile();
+            masterInventory.addToInventory(p1, p1.getQuantity());
+            masterInventory.addToInventory(p2, p2.getQuantity());
+            masterInventory.addToInventory(p3, p3.getQuantity());
+            masterInventory.saveToFile();
         }
+        inventory = masterInventory;
 
         launch(args);
     }

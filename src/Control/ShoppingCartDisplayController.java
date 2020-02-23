@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import sun.applet.Main;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -27,7 +28,8 @@ public class ShoppingCartDisplayController {
 
     @FXML
     void checkout() {
-        //TODO right checkout code
+        MainApplication.masterInventory = MainApplication.inventory;
+        MainApplication.masterInventory.saveToFile();
     }
 
     void displayShoppingCart(){

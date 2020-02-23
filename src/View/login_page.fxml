@@ -41,6 +41,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
+            <TextField fx:id="txtUserID" promptText="between 6 and 15 characters" GridPane.columnIndex="1" />
+            <PasswordField fx:id="pwfPassword" prefHeight="26.0" prefWidth="185.0" promptText="6-15 alphanumeric, !, *, #, %, ^" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button id="login_button" fx:id="btnLogin" mnemonicParsing="false" onAction="#loginUser" prefHeight="26.0" prefWidth="175.0" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button mnemonicParsing="false" onAction="#continueAsGuest" style="-fx-background-color: white; -fx-underline: true;" text="Continue as Guest" GridPane.rowIndex="4" />
+            <Button id="register_button" fx:id="btnRegister" mnemonicParsing="false" onAction="#getRegisterUserPage" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: white; -fx-border-color: white; -fx-underline: true;" text="Register New Account" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Username:" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                 <GridPane.margin>
                     <Insets left="20.0" />
@@ -51,11 +56,6 @@
                     <Insets left="20.0" />
                 </GridPane.margin>
             </Label>
-            <PasswordField fx:id="pwfPassword" prefHeight="26.0" prefWidth="185.0" promptText="6-15 alphanumeric, !, *, #, %, ^" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtUserID" promptText="between 6 and 15 characters" GridPane.columnIndex="1" />
-            <Button id="login_button" fx:id="btnLogin" mnemonicParsing="false" onAction="#loginUser" prefHeight="26.0" prefWidth="175.0" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button id="register_button" fx:id="btnRegister" mnemonicParsing="false" onAction="#getRegisterUserPage" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: white; -fx-border-color: white; -fx-underline: true;" text="Register New Account" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <Button mnemonicParsing="false" onAction="#continueAsGuest" style="-fx-background-color: white; -fx-underline: true;" text="Continue as Guest" GridPane.rowIndex="4" />
         </GridPane>
         <ImageView fitHeight="89.0" fitWidth="254.0" layoutX="191.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@login_logo.png" />

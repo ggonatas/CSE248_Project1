@@ -47,6 +47,46 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+            <TextField fx:id="txtRegisterStreet" promptText="Address" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtRegisterCity" promptText="City" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtRegisterState" promptText="State" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtRegisterZip" promptText="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#finalizeRegistration" text="Register Account" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Button>
             <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" text="Address:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <opaqueInsets>
                   <Insets top="5.0" />
@@ -71,22 +111,6 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="txtRegisterStreet" promptText="Address" GridPane.columnIndex="1">
-               <opaqueInsets>
-                  <Insets top="5.0" />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="txtRegisterZip" promptText="Zip Code" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <opaqueInsets>
-                  <Insets top="5.0" />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </TextField>
             <Label text="State:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <opaqueInsets>
                   <Insets top="5.0" />
@@ -95,30 +119,6 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
-            <Button  mnemonicParsing="false" onAction="#finalizeRegistration" text="Register Account" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <opaqueInsets>
-                  <Insets top="5.0" />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </Button>
-            <TextField fx:id="txtRegisterCity" promptText="City" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <opaqueInsets>
-                  <Insets top="5.0" />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="txtRegisterState" promptText="State" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <opaqueInsets>
-                  <Insets top="5.0" />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </TextField>
          </children>
          <opaqueInsets>
             <Insets />
