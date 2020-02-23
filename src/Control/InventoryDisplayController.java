@@ -1,9 +1,12 @@
-package View;
+package Control;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Control.Inventory;
+import Control.ProductDisplayController;
+import Model.Inventory;
+import Model.Product;
+import View.searchableTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +32,7 @@ public class InventoryDisplayController {
     @FXML
     void showProductDisplayBySerialNum(String serialNum) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProductDisplay.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ProductDisplay.fxml"));
             Parent newRoot = loader.load();
             Main.getScene().setRoot(newRoot);
             Main.getStage().show();
@@ -45,7 +48,17 @@ public class InventoryDisplayController {
     @FXML
     void showInventoryDisplay() {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("InventoryDisplay.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/InventoryDisplay.fxml"));
+            Parent newRoot = loader.load();
+            Main.getScene().setRoot(newRoot);
+            Main.getStage().show();
+        }catch (IOException ex) { System.err.println(ex); }
+    }
+
+    @FXML
+    void showCheckoutDisplay(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CheckoutDisplay.fxml"));
             Parent newRoot = loader.load();
             Main.getScene().setRoot(newRoot);
             Main.getStage().show();
@@ -58,15 +71,12 @@ public class InventoryDisplayController {
      */
     void createProductButtons(){
         Inventory inventory = Inventory.loadFromFile();
-        int i = 1;
-        while(!(inventory.getProduct(String.valueOf(i)) == null)){
-            String serialNum = String.valueOf(i);
+        for (Product product : inventory.getInventory().values()){
             //String imagePath = inventory.getProduct(String.valueOf(i)).getImage);
-            Button button = new Button(inventory.getProduct(String.valueOf(i)).getName());
+            Button button = new Button(product.getName());
             button.setPrefSize(133,126);
-            button.setOnAction(a -> showProductDisplayBySerialNum(serialNum));
+            button.setOnAction(a -> showProductDisplayBySerialNum(product.getSerialNum()));
             buttonPane.getChildren().add(button);
-            i++;
         }
     }
 
@@ -76,10 +86,8 @@ public class InventoryDisplayController {
     ArrayList<String> getProductNames(){
         ArrayList<String> productNames = new ArrayList<>();
         Inventory inventory = Inventory.loadFromFile();
-        int i=1;
-        while(!(inventory.getProduct(String.valueOf(i)) == null)) {
-            productNames.add(inventory.getProduct(String.valueOf(i)).getName());
-            i++;
+        for( Product product : inventory.getInventory().values()){
+            productNames.add(product.getName());
         }
         return productNames;
     }

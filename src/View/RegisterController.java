@@ -4,7 +4,7 @@ import Model.Address;
 import Model.Customer;
 import Model.PasswordUtils;
 import Model.Person;
-import Control.PersonList;
+import Model.PersonList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;

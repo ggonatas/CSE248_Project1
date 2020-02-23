@@ -1,6 +1,6 @@
 package View;
 
-import Control.PersonList;
+import Model.PersonList;
 import Model.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -8,11 +8,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.Pane?>
-<VBox minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProductDisplayController">
+<VBox minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.ProductDisplayController">
    <children>
         <ToolBar prefHeight="40.0" prefWidth="800.0">
             <items>
@@ -29,7 +29,7 @@
                     </tooltip>
                 </Button>
                 <Pane HBox.hgrow="ALWAYS" />
-                <Button mnemonicParsing="false">
+                <Button mnemonicParsing="false" onAction="#showCheckoutDisplay">
                     <graphic>
                         <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -79,7 +79,7 @@
                     </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <VBox fx:id="ProductDisplayRight" alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
                     <Label fx:id="ProductDescriptionLabel" alignment="CENTER" text="Insert Description Here" VBox.vgrow="ALWAYS">
                         <font>
@@ -127,7 +127,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button mnemonicParsing="false" text="Add to Cart">
+                  <Button fx:id="AddtoCartBtn" mnemonicParsing="false" onAction="#addToCart" text="Add to Cart">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

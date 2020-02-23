@@ -1,6 +1,4 @@
-package Control;
-
-import Model.Product;
+package Model;
 
 import java.io.*;
 import java.util.Collection;
@@ -12,6 +10,15 @@ public class Inventory implements Serializable {
     public Inventory(){
         inventory =  new HashMap<>();
     }
+
+    public HashMap<String, Product> getInventory(){
+        return inventory;
+    }
+
+    public void setInventory(HashMap<String, Product> inventory) {
+        this.inventory = inventory;
+    }
+
     //Add an item to inventory
     public boolean addToInventory(Product product, int quantity){
         if(inventory.containsValue(product)){
@@ -77,7 +84,7 @@ public class Inventory implements Serializable {
         try {
             FileInputStream fileInput = new FileInputStream("inventory.sav");
             ObjectInputStream inputStream = new ObjectInputStream(fileInput);
-            newInventory.inventory = (HashMap<String, Product>) inputStream.readObject();
+            newInventory.setInventory((HashMap<String, Product>) inputStream.readObject());
             inputStream.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

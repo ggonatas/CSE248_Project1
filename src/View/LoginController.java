@@ -1,6 +1,6 @@
 package View;
 
-import Control.PersonList;
+import Model.PersonList;
 import Model.Customer;
 import Model.PasswordUtils;
 import Model.Person;

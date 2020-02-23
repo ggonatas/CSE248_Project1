@@ -1,5 +1,6 @@
 package Control;
 
+import Model.Inventory;
 import Model.Product;
 
 import java.util.ArrayList;

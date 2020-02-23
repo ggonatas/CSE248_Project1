@@ -1,11 +1,7 @@
-package Control;
+package Model;
 
 import java.io.*;
 import java.util.HashMap;
-
-import Model.Administrator;
-import Model.GuestUser;
-import Model.Person;
 
 public class PersonList implements Serializable {
 	private HashMap<String, Person> personlist;

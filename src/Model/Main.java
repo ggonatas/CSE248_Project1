@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import Control.Inventory;
+
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -35,7 +35,8 @@ public class Main extends Application {
         inventory.addToInventory(p2, p2.getQuantity());
         inventory.addToInventory(p3, p3.getQuantity());
         inventory.saveToFile();
-
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.saveToFile();
         launch(args);
     }
 

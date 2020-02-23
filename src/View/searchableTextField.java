@@ -1,10 +1,7 @@
 package View;
 
+import Control.ProductDisplayController;
 import Model.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
@@ -53,9 +50,7 @@ public class searchableTextField extends TextField
                 }
             }
         });
-
         focusedProperty().addListener((observableValue, aBoolean, aBoolean2) -> entriesPopup.hide());
-
     }
 
     // Get the existing set of autocomplete entries.
