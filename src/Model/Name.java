@@ -27,16 +27,16 @@ public class Name implements Serializable {
     public String getFullName() {
         String fullName = "";
         if(! prefix.equals("")){
-            fullName += prefix;
+            fullName += prefix + " ";
         }
         if(! firstName.equals("")){
-            fullName += firstName;
+            fullName += firstName + " ";
         }
         if(! middleName.equals("")){
-            fullName += middleName;
+            fullName += middleName + " ";
         }
         if(! lastName.equals("")){
-            fullName += lastName;
+            fullName += lastName + " ";
         }
         if(! suffix.equals("")){
             fullName += suffix;
