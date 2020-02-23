@@ -1,5 +1,7 @@
 package Model;
 
+import View.MainApplication;
+
 import java.io.Serializable;
 
 public class ShoppingCart extends Inventory implements Serializable {
@@ -35,6 +37,7 @@ public class ShoppingCart extends Inventory implements Serializable {
         int quantity = itemToRemove.getQuantity();
         subtotal -= itemToRemove.getPrice() * quantity;
         itemCount -= quantity;
+        MainApplication.inventory.addToInventory(itemToRemove,quantity);
         return removeFromInventory(serialNum);
     }
 

@@ -1,5 +1,7 @@
 package Model;
 
+import View.MainApplication;
+
 import java.io.*;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,8 +23,8 @@ public class Inventory implements Serializable {
 
     //Add an item to inventory
     public boolean addToInventory(Product product, int quantity){
-        if(inventory.containsValue(product)){
-            return updateQuantity(product, product.getQuantity() + quantity);
+        if(inventory.containsKey(product.getSerialNum())){
+            return updateQuantity(product, MainApplication.inventory.getProduct(product.getSerialNum()).getQuantity() + quantity);
         }
         else{
             inventory.put(product.getSerialNum(), product);
