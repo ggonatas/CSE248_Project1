@@ -6,6 +6,8 @@ public class Invoice {
     private String invoiceNum;
     private Address companyAddress;
     private Customer customer;
+    private String name;
+    private Address address;
     private double total;
     private final double NYS_TAX = 1.08625;
 
@@ -18,14 +20,31 @@ public class Invoice {
         }
         companyAddress = new Address("1103 E Jericho Tpke", "Huntington", "NY", "11743", "info@clothingstore.com");
         this.customer = customer;
+        name = customer.getFullName();
+        address = customer.getAddressObj();
         total = customer.getShoppingCart().getSubtotal() * NYS_TAX;
     }
+    public Invoice(Customer customer, String name, String street, String city, String state, String zipCode, String email){
+        invoiceNum = "guestuser" + 1;
+        int i = 2;
+        while( (new File(invoiceNum + ".txt")).exists() ){
+            invoiceNum = "guestuser" + i;
+            i++;
+        }
+        companyAddress = new Address("1103 E Jericho Tpke", "Huntington", "NY", "11743", "info@clothingstore.com");
+        this.customer = customer;
+        this.name = name;
+        address = new Address(street, city, state, zipCode, email);
+        total = customer.getShoppingCart().getSubtotal() * NYS_TAX;
+    }
+    //Get invoice number
+    public String getInvoiceNum(){ return invoiceNum; }
     //Generate an invoice file
     public void generateInvoice(){
         try {
             PrintWriter writeInvoice = new PrintWriter(invoiceNum + ".txt");
             writeInvoice.println("Clothing Co.\n" + companyAddress.getFullAddress() + "\n" + invoiceNum);
-            writeInvoice.println("\n" + customer.getFullName() + "\n" + customer.getAddress() + "\n\nORDER:");
+            writeInvoice.println("\n" + name + "\n" + address.getFullAddress() + "\n\nORDER:");
             writeInvoice.println("SerialNum |  Name  |  Qty.  |  Unit Price  |   Cost");
             writeInvoice.println("----------------------------------------------------");
             for(Product product : customer.getShoppingCart().getInventory().values()){

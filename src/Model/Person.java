@@ -47,13 +47,15 @@ public abstract class Person implements Serializable {
 
     //Get address
     public String getAddress(){ return address.getFullAddress(); }
+    //Get address obj
+    public Address getAddressObj(){ return address; }
     //Get email value from Address object
     public String getEmail(){ return address.getEmail(); }
     //Set email value in Address object. Returns false for an invalid email address, true if successful.
     public boolean setEmail(String email){ return address.setEmail(email); }
     //Set address method
     public void setAddress(String street, String city, String state, String zipCode) {
-        address.setAddress(street, city, StateName.getStateValue(state), zipCode);
+        address.setAddress(street, city, state, zipCode);
     }
     //Set address method passing a new Address object
     void setAddress(Address newAddress){ this.address = newAddress.deepCopy(); }

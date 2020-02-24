@@ -23,16 +23,19 @@ public class Address implements Serializable {
         this.email = email;
     }
 
-    String getStreet() { return new String(street.toCharArray()); }
-    String getCity() { return new String(city.toCharArray()); }
-    String getState() { return state.getStateName(); }
-    String getZipCode() { return new String(zipCode.toCharArray()); }
-    String getEmail() { return new String(email.toCharArray()); }
+    public String getStreet() { return new String(street.toCharArray()); }
+    public String getCity() { return new String(city.toCharArray()); }
+    public String getState() { return state.getStateName(); }
+    public String getZipCode() { return new String(zipCode.toCharArray()); }
+    public String getEmail() { return new String(email.toCharArray()); }
 
     String getFullAddress(){
         return street + "\n" + city + ", " + state + " " + zipCode;
     }
 
+    public boolean addressIsBlank(){
+        return street.equals("") && city.equals("") && state == null & zipCode.equals("");
+    }
     public static boolean isValidEmail(String email){
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
@@ -44,11 +47,13 @@ public class Address implements Serializable {
         }
         else return false;
     }
-    void setAddress(String street, String city, StateName state, String zipCode) {
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
+    void setAddress(String street, String city, String state, String zipCode) {
+        if(! street.equals("") && ! city.equals("") && StateName.getStateValue(state) != null && ! zipCode.equals("")) {
+            this.street = street;
+            this.city = city;
+            this.state = StateName.getStateValue(state);
+            this.zipCode = zipCode;
+        }
     }
     //Deep copy method
     public Address deepCopy(){

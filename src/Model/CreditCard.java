@@ -11,9 +11,9 @@ public class CreditCard {
         this.cvv = encryptInt(cvv);
     }
 
-    String getCardNum(){ return decryptCardNum(); }
-    int getExpDate(){ return decryptInt(expDate); }
-    int getCvv(){ return decryptInt(cvv);}
+    public String getCardNum(){ return decryptCardNum(); }
+    public int getExpDate(){ return decryptInt(expDate); }
+    public int getCvv(){ return decryptInt(cvv);}
 
     private String encryptCardNum(String cardNum) {
         return cardNum;
