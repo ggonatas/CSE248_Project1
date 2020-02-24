@@ -1,9 +1,5 @@
 package Model;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -80,10 +76,6 @@ public class Product implements Serializable {
 
     public boolean equals(String serialNum) {
         return this.serialNum.equals(serialNum);
-    }
-
-    public String getPic() {
-        return pic;
     }
 
     public String getProductInfo() {

@@ -1,18 +1,19 @@
 package Control;
 
-import java.io.File;
-import java.io.IOException;
-
-import Model.*;
+import Model.Customer;
+import Model.Product;
+import Model.ShoppingCart;
 import View.MainApplication;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class ProductDisplayController {
 
@@ -97,7 +98,7 @@ public class ProductDisplayController {
     @FXML
     void calculateTotal(){
         String quantity = quantityLabel.getText();
-        String price = ProductPriceLabel.getText().substring(1);
+        String price = ProductPriceLabel.getText().substring(8);
         totalLabel.setText("Total: $" + Double.parseDouble(quantity) * Double.parseDouble(price));
     }
 
