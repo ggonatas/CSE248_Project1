@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.AddressPageController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.AddressPageController">
    <children>
       <MenuBar>
          <menus>
@@ -86,12 +86,22 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </TextField>
+            <TextField fx:id="txtEmail" promptText="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtName" promptText="Full Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtCardNum" promptText="Card Number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txtExpDate" promptText="MMYY" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <PasswordField fx:id="pwfCVV" promptText="CVV" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Button mnemonicParsing="false" onAction="#finalizeCheckout" text="Finish Checkout" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <opaqueInsets>
                   <Insets top="5.0" />
                </opaqueInsets>
                <GridPane.margin>
                   <Insets top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#returnToCart" text="Return to Cart" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="25.0" top="10.0" />
                </GridPane.margin>
             </Button>
             <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" text="Address:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -129,13 +139,8 @@
             <Label text="Card Number:" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
             <Label text="Exp. Date:" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
             <Label text="CVV:" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-            <TextField fx:id="txtCardNum" promptText="Card Number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="txtExpDate" promptText="MMYY" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <PasswordField fx:id="pwfCVV" promptText="CVV" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="Name:" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-            <TextField fx:id="txtName" promptText="Full Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label text="Email:" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <TextField fx:id="txtEmail" promptText="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
          <opaqueInsets>
             <Insets />

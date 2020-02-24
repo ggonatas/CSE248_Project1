@@ -40,18 +40,6 @@
                   <Tooltip text="Shopping Cart" />
                </tooltip>
             </Button>
-            <Button mnemonicParsing="false">
-               <tooltip>
-                  <Tooltip text="Options" />
-               </tooltip>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/OptionsIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
          </items>
       </ToolBar>
       <Label alignment="CENTER" contentDisplay="CENTER" text="Checkout" textAlignment="CENTER" VBox.vgrow="ALWAYS">

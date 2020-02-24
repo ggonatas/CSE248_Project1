@@ -50,14 +50,23 @@ public class MainApplication extends Application {
         }else{
             masterInventory = new Inventory();
             Product p1 = new Product("1", "Shirt", "A casual T-Shirt", "Black",
-                    10.0, new ArrayList<>(), 0.0f, "../Images/Shirt.png", 12);
-            Product p2 = new Product("2", "Sweatshirt", "A warm SweatShirt, but not too warm to make you sweat", "Red",
-                    20.0, new ArrayList<>(), 0.0f, "../Images/Sweatshirt.png", 25);
+                    10.0, new ArrayList<>(), 1.5f, "../Images/Shirt.png", 12);
+            Product p2 = new Product("2", "Sweatshirt", "A warm sweatswirt, but not too warm to make you sweat", "Red",
+                    20.0, new ArrayList<>(), 3.0f, "../Images/Sweatshirt.png", 25);
             Product p3 = new Product("3", "Pants", "A fine pair of pants, plaid ain't bad", "Tan",
-                    50.0, new ArrayList<>(), 5.0f, "../Images/Pants.png", 10);
+                    50.0, new ArrayList<>(), 4.0f, "../Images/Pants.png", 10);
+            Product p4 = new Product("4", "Blouse", "A flowery blouse", "Yellow",
+                    50.0, new ArrayList<>(), 3.0f, "../Images/Blouse.png", 15);
+            Product p5 = new Product("5", "Sweatpants", "A pair of sweatpants, perfect for a lazy day", "Grey",
+                    50.0, new ArrayList<>(), 2.2f, "../Images/Sweatpants.png", 10);
+            Product p6 = new Product("6", "Leather Jacket", "A Jacket only fit for the baddest of the bad", "Black",
+                    50.0, new ArrayList<>(), 5.0f, "../Images/Jacket.png", 5);
             masterInventory.addToInventory(p1, p1.getQuantity());
             masterInventory.addToInventory(p2, p2.getQuantity());
             masterInventory.addToInventory(p3, p3.getQuantity());
+            masterInventory.addToInventory(p4, p4.getQuantity());
+            masterInventory.addToInventory(p5, p5.getQuantity());
+            masterInventory.addToInventory(p6, p6.getQuantity());
             masterInventory.saveToFile();
         }
         inventory = masterInventory;

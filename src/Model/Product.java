@@ -79,6 +79,6 @@ public class Product implements Serializable {
     }
 
     public String getProductInfo() {
-        return "SerialNum: " + serialNum + " Name: " + name + " Qty. " + quantity + " Unit Price: " + price + " Cost: " + (quantity*price);
+        return "SerialNumber: " + serialNum + " Name: " + name + " Qty. " + quantity + " Unit Price: " + price + " Subtotal: " + (quantity*price);
     }
 }

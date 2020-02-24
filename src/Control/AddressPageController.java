@@ -56,6 +56,12 @@ public class AddressPageController implements Initializable {
         resultStage.setScene(resultScene);
     }
 
+    @FXML public void returnToCart(){
+        try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/ShoppingCartDisplay.fxml")); }
+        catch (IOException e) { e.printStackTrace(); }
+        MainApplication.scene.setRoot(MainApplication.root);
+    }
+
     @FXML public void finalizeCheckout(){
         String street = txtCheckoutStreet.getText();
         String city = txtCheckoutCity.getText();
