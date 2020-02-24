@@ -45,14 +45,12 @@ public class Invoice {
             PrintWriter writeInvoice = new PrintWriter(invoiceNum + ".txt");
             writeInvoice.println("Clothing Co.\n" + companyAddress.getFullAddress() + "\n" + invoiceNum);
             writeInvoice.println("\n" + name + "\n" + address.getFullAddress() + "\n\nORDER:");
-            writeInvoice.println("SerialNum |  Name  |  Qty.  |  Unit Price  |   Cost");
-            writeInvoice.println("----------------------------------------------------");
             for(Product product : customer.getShoppingCart().getInventory().values()){
                 writeInvoice.println(product.getProductInfo() + "\n");
             }
-            writeInvoice.println("Subtotal: $" + customer.getShoppingCart().getSubtotal());
-            writeInvoice.println("Taxes: $" + (customer.getShoppingCart().getSubtotal() * (NYS_TAX - 1)) );
-            writeInvoice.println("Total: $" + total);
+            writeInvoice.printf("Subtotal: $%.2f\n", customer.getShoppingCart().getSubtotal());
+            writeInvoice.printf("Taxes: $%.2f\n", (customer.getShoppingCart().getSubtotal() * (NYS_TAX - 1)) );
+            writeInvoice.printf("Total: $%.2f\n", total);
             writeInvoice.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
