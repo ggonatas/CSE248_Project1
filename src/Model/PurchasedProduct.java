@@ -1,28 +1,22 @@
 package Model;
 
-public class PurchasedProduct {
-    private String serialNum;
-    private boolean reviewed;
-    private int quantityBought;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-    PurchasedProduct(String serialNum, int quantityBought){
+public class PurchasedProduct implements Serializable {
+    private String serialNum;
+    private int quantityBought;
+    private ArrayList<String> invoiceNumbers;
+
+    PurchasedProduct(String serialNum, int quantityBought, String invoiceNumber){
         this.serialNum = serialNum;
-        reviewed = false;
         this.quantityBought = quantityBought;
+        invoiceNumbers = new ArrayList<>();
+        invoiceNumbers.add(invoiceNumber);
     }
     //Edit quantity
     void updateQuantity(int quantityBought){
         this.quantityBought += quantityBought;
-    }
-    //Set to reviewed
-    boolean reviewProduct(){
-        if(!alreadyReviewed())
-            reviewed = true;
-        return true;
-    }
-    //Check if product already reviewed
-    boolean alreadyReviewed(){
-        return reviewed;
     }
     //Equals method
     public boolean equals(String serialNum){

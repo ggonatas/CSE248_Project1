@@ -36,17 +36,19 @@ public class AddressPageController implements Initializable {
         customer = (Customer) MainApplication.loggedInUser;
 
         Address userAddress = customer.getAddressObj();
-        if(userAddress != null && ! userAddress.addressIsBlank()){
-            txtCheckoutStreet.setText(userAddress.getStreet());
-            txtCheckoutCity.setText(userAddress.getCity());
-            txtCheckoutState.setText(userAddress.getState());
-            txtCheckoutZip.setText(userAddress.getZipCode());
+        if(userAddress != null && customer.getUserType().equals("CUSTOMER")) {
             txtEmail.setText(customer.getEmail());
             txtName.setText(customer.getFullName());
-            if(customer.getCreditCard() != null) {
-                txtCardNum.setText(customer.getCreditCard().getCardNum());
-                txtExpDate.setText("" + customer.getCreditCard().getExpDate());
-                pwfCVV.setText("" + customer.getCreditCard().getCvv());
+            if (!userAddress.addressIsBlank()) {
+                txtCheckoutStreet.setText(userAddress.getStreet());
+                txtCheckoutCity.setText(userAddress.getCity());
+                txtCheckoutState.setText(userAddress.getState());
+                txtCheckoutZip.setText(userAddress.getZipCode());
+                if (customer.getCreditCard() != null) {
+                    txtCardNum.setText(customer.getCreditCard().getCardNum());
+                    txtExpDate.setText("" + customer.getCreditCard().getExpDate());
+                    pwfCVV.setText("" + customer.getCreditCard().getCvv());
+                }
             }
         }
         resultLabel = new Label();
@@ -98,6 +100,7 @@ public class AddressPageController implements Initializable {
             customer.addCreditCard(cardNum, expDate, cvv);
             personList.saveToFile();
             invoice = new Invoice(customer);
+            customer.purchaseMade(invoice.getInvoiceNum());
         }
         else{
             invoice = new Invoice(customer, name, street, city, state, zip, email);

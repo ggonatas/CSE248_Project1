@@ -16,31 +16,27 @@ public class Customer extends Person implements Serializable {
         purchaseHistory = new ArrayList<>();
         shoppingCart = new ShoppingCart();
     }
+    //Made purchase, updates history
+    public void purchaseMade(String invoiceNumber){
+        for(Product product: shoppingCart.getInventory().values()){
+            purchaseProduct(product.getSerialNum(), product.getQuantity(), invoiceNumber);
+        }
+    }
     //Add product to purchased list
-    public boolean purchaseProduct(String serialNum, int quantity){
+    public boolean purchaseProduct(String serialNum, int quantity, String invoiceNumber){
         for(PurchasedProduct product : purchaseHistory){
             if(product.equals(serialNum)){
                 product.updateQuantity(quantity);
                 return true;
             }
         }
-        PurchasedProduct newPurchase = new PurchasedProduct(serialNum, quantity);
+        PurchasedProduct newPurchase = new PurchasedProduct(serialNum, quantity, invoiceNumber);
         if(newPurchase != null){
             purchaseHistory.add(newPurchase);
             return true;
         }
         else return false;
 
-    }
-    //Sets review boolean for customer purchased list
-    boolean reviewProduct(String serialNum){
-        boolean customerReviewedProduct = false;
-        for(PurchasedProduct product : purchaseHistory){
-            if(product.equals(serialNum)){
-                customerReviewedProduct = product.reviewProduct();
-            }
-        }
-        return customerReviewedProduct;
     }
     //Get credit card
     public CreditCard getCreditCard(){

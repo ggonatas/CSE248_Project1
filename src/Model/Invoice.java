@@ -43,7 +43,7 @@ public class Invoice {
     public void generateInvoice(){
         try {
             PrintWriter writeInvoice = new PrintWriter(invoiceNum + ".txt");
-            writeInvoice.println("Clothing Co.\n" + companyAddress.getFullAddress() + "\n" + invoiceNum);
+            writeInvoice.println("Clothing Co.\n" + companyAddress.getFullAddress() + "\nInvoice Number: " + invoiceNum);
             writeInvoice.println("\n" + name + "\n" + address.getFullAddress() + "\n\nORDER:");
             for(Product product : customer.getShoppingCart().getInventory().values()){
                 writeInvoice.println(product.getProductInfo() + "\n");
