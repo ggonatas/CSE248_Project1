@@ -19,7 +19,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@ClothingStoreLogo.png" />
+                        <Image url="@../Images/ClothingStoreLogo.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -32,7 +32,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@ShoppingCartIcon.png" />
+                        <Image url="@../Images/ShoppingCartIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,7 +47,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@OptionsIcon.png" />
+                        <Image url="@../Images/OptionsIcon.png" />
                      </image>
                   </ImageView>
                </graphic>

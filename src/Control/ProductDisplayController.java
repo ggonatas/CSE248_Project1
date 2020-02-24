@@ -1,13 +1,17 @@
 package Control;
 
+import java.io.File;
 import java.io.IOException;
 
 import Model.*;
 import View.MainApplication;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -17,20 +21,17 @@ public class ProductDisplayController {
     private int quantity = 1;
     private Product product;
 
+    @FXML private Label quantityLabel = new Label(Integer.toString(quantity));
+    @FXML private Label ProductNameLabel, ProductScoreLabel, ProductPriceLabel,totalLabel;
+    @FXML private ImageView ProductImage;
+    @FXML private Button DecreaseQuantityBtn, IncreaseQuantityBtn, AddtoCartBtn;
+    @FXML private VBox ProductDisplayRight;
+    @FXML private TextArea ProductDescriptionTextArea;
     Product getProductBySerialNum(){
         Product p = MainApplication.inventory.getProduct(serialNum);
         return p;
     }
-    @FXML
-    private Label quantityLabel = new Label(Integer.toString(quantity));
-    @FXML
-    private Label ProductDescriptionLabel, ProductNameLabel, ProductScoreLabel, ProductPriceLabel,totalLabel;
-    @FXML
-    private ImageView ProductImage;
-    @FXML
-    private Button DecreaseQuantityBtn, IncreaseQuantityBtn, AddtoCartBtn;
-    @FXML
-    private VBox ProductDisplayRight;
+
     /**
      * Decrements the shown quantity on quantityLabel
      * if quantity is one, disables DecreaseQuantityBtn
@@ -111,10 +112,13 @@ public class ProductDisplayController {
         this.serialNum = serialNum;
         product = getProductBySerialNum();
         ProductNameLabel.setText(product.getName());
-        ProductDescriptionLabel.setText(product.getDescription());
-        //ProductImage.setImage(); Product needs a getPic class, that at least returns image filename
+        ProductDescriptionTextArea.setText(product.getDescription());
+        Image image = new Image(getClass().getResource(product.getPic()).toExternalForm());
+        ProductImage.setImage(image);
+        ProductImage.setPreserveRatio(true);
+        ProductImage.setFitHeight(200);
         ProductScoreLabel.setText("Rating: " + product.getScore() + "/5.0");
-        ProductPriceLabel.setText("$" + product.getPrice());
+        ProductPriceLabel.setText("Price: $" + product.getPrice());
         totalLabel.setText("Total: $" + product.getPrice());
         if(product.getQuantity() == 0){
             totalLabel.setText("Total: $0.00");
@@ -132,10 +136,13 @@ public class ProductDisplayController {
         this.serialNum = MainApplication.inventory.getProductByName(name).getSerialNum();
         product = getProductBySerialNum();
         ProductNameLabel.setText(product.getName());
-        ProductDescriptionLabel.setText(product.getDescription());
-        //ProductImage.setImage(); Product needs a getPic class, that at least returns image filename
+        ProductDescriptionTextArea.setText(product.getDescription());
+        Image image = new Image(getClass().getResource(product.getPic()).toExternalForm());
+        ProductImage.setImage(image);
+        ProductImage.setPreserveRatio(true);
+        ProductImage.setFitHeight(200);
         ProductScoreLabel.setText("Rating: " + product.getScore() + "/5.0");
-        ProductPriceLabel.setText("$" + product.getPrice());
+        ProductPriceLabel.setText("Price: $" + product.getPrice());
         totalLabel.setText("Total: $" + product.getPrice());
         if(product.getQuantity() == 0){
             totalLabel.setText("Total: $0.00");

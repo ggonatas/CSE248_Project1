@@ -10,6 +10,9 @@ import View.searchableTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -60,10 +63,13 @@ public class InventoryDisplayController {
      * each button calls showProductDisplayBySerialNum with its products' serialNum
      */
     void createProductButtons(){
-        Inventory inventory = Inventory.loadFromFile();
-        for (Product product : inventory.getInventory().values()){
-            //String imagePath = inventory.getProduct(String.valueOf(i)).getImage);
-            Button button = new Button(product.getName());
+        for (Product product : MainApplication.inventory.getInventory().values()){
+            Image image = new Image(getClass().getResource(product.getPic()).toExternalForm());
+            ImageView imageView = new ImageView(image);
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(80);
+            Button button = new Button(product.getName(),imageView);
+            button.setContentDisplay(ContentDisplay.TOP);
             button.setPrefSize(133,126);
             button.setOnAction(a -> showProductDisplayBySerialNum(product.getSerialNum()));
             buttonPane.getChildren().add(button);

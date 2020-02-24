@@ -49,12 +49,12 @@ public class MainApplication extends Application {
             masterInventory = Inventory.loadFromFile();
         }else{
             masterInventory = new Inventory();
-            Product p1 = new Product("1", "Shirt 1", "SWag1", "Black",
-                    10.0, new ArrayList<>(), 0.0f, "pic1.jpg", 12);
-            Product p2 = new Product("2", "Sweatshirt", "SWag2", "Red",
-                    20.0, new ArrayList<>(), 0.0f, "pic2.jpg", 25);
-            Product p3 = new Product("3", "Pants", "A fine pair of pants", "Tan",
-                    50.0, new ArrayList<>(), 5.0f, "pic3.jpg", 10);
+            Product p1 = new Product("1", "Shirt", "A casual T-Shirt", "Black",
+                    10.0, new ArrayList<>(), 0.0f, "../Images/Shirt.png", 12);
+            Product p2 = new Product("2", "Sweatshirt", "A warm SweatShirt, but not too warm to make you sweat", "Red",
+                    20.0, new ArrayList<>(), 0.0f, "../Images/Sweatshirt.png", 25);
+            Product p3 = new Product("3", "Pants", "A fine pair of pants, plaid ain't bad", "Tan",
+                    50.0, new ArrayList<>(), 5.0f, "../Images/Pants.png", 10);
             masterInventory.addToInventory(p1, p1.getQuantity());
             masterInventory.addToInventory(p2, p2.getQuantity());
             masterInventory.addToInventory(p3, p3.getQuantity());

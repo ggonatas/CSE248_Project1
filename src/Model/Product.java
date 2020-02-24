@@ -13,7 +13,6 @@ public class Product implements Serializable {
     private ArrayList<String> tags;
     private float score;
     private int quantity;
-    File image;
 
     public Product(String serialNum, String name, String description, String color, double price, ArrayList<String> tags, float score, String pic, int quantity) {
         this.serialNum = serialNum;
@@ -24,32 +23,21 @@ public class Product implements Serializable {
         this.tags = tags;
         this.score = score;
         this.pic = pic;
-        setImage(pic);
         this.quantity = quantity;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
+    public int getQuantity() {   return quantity;    }
 
-    public void updateQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public void updateQuantity(int quantity) {  this.quantity = quantity;    }
 
-    public String getSerialNum() {
-        return serialNum;
-    }
+    public String getSerialNum() { return serialNum;    }
 
-    public void setSerialNum(String serialNum) {
-        this.serialNum = serialNum;
-    }
+    public String getPic() { return pic;    }
+
+    public void setPic(String pic) { this.pic = pic; }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
@@ -60,20 +48,8 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public ArrayList<String> getTags() {
@@ -90,19 +66,6 @@ public class Product implements Serializable {
 
     public void setScore(float score) {
         this.score = score;
-    }
-
-    public void setImage(String pic) {
-        image = new File(pic);
-        try {
-            BufferedImage bi = ImageIO.read(image);
-            ImageIO.write(bi, "jpg", new File("productImages/" + name + ".jpg"));
-        }
-        catch (IOException e) {
-        }
-    }
-    public File getImage(){
-        return image;
     }
 
     public Product deepCopy() {
