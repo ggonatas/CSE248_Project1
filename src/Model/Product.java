@@ -81,4 +81,12 @@ public class Product implements Serializable {
     public boolean equals(String serialNum) {
         return this.serialNum.equals(serialNum);
     }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public String getProductInfo() {
+        return serialNum + "      " + name + "    " + quantity + "       " + price + "      " + (quantity*price);
+    }
 }
