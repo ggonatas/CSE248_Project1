@@ -48,7 +48,7 @@ public class Customer extends Person implements Serializable {
     }
     //Add a credit card
     public boolean addCreditCard(String cardNum, int expDate, int cvv){
-        if( (cardNum.length() < 12 || cardNum.length() > 16) && (expDate < 0 || expDate > 9999) && (cvv < 0 || cvv > 999)){
+        if( (cardNum.length() > 12 && cardNum.length() < 16) && (expDate > 0 && expDate < 9999) && (cvv > 0 && cvv < 999)){
             creditCard = new CreditCard(cardNum, expDate, cvv);
             return true;
         }

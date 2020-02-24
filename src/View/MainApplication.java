@@ -39,7 +39,7 @@ public class MainApplication extends Application {
     @Override
     public void stop(){
         masterInventory.saveToFile();
-        ((Customer) loggedInUser).getShoppingCart().getInventory().clear();
+        ((Customer) loggedInUser).getShoppingCart().reset();
         personList.saveToFile();
     }
 

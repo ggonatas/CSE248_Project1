@@ -87,7 +87,7 @@ public class AddressPageController implements Initializable {
         }
         Invoice invoice;
 
-        if(customer.getUserType().equals(UserType.CUSTOMER)) {
+        if(customer.getUserType().equals("CUSTOMER")) {
             customer.setAddress(street, city, state, zip);
             customer.addCreditCard(cardNum, expDate, cvv);
             personList.saveToFile();
@@ -96,8 +96,9 @@ public class AddressPageController implements Initializable {
         else{
             invoice = new Invoice(customer, name, street, city, state, zip, email);
         }
+        invoice.generateInvoice();
 
-        resultLabel.setText("Order successfully placed! Invoice sent to " + customer.getEmail() + ".");
+        resultLabel.setText("Order successfully placed! Invoice sent to " + email + ".");
         resultStage.show();
 
         try {
@@ -108,7 +109,7 @@ public class AddressPageController implements Initializable {
         MainApplication.masterInventory = MainApplication.inventory;
         MainApplication.masterInventory.saveToFile();
 
-        customer.getShoppingCart().getInventory().clear();
+        customer.getShoppingCart().reset();
         try { MainApplication.root = FXMLLoader.load(getClass().getResource("../View/InventoryDisplay.fxml")); }
         catch (IOException e) { e.printStackTrace(); }
         MainApplication.scene.setRoot(MainApplication.root);

@@ -41,4 +41,9 @@ public class ShoppingCart extends Inventory implements Serializable {
         return removeFromInventory(serialNum);
     }
 
+    public void reset() {
+        this.getInventory().clear();
+        subtotal = 0;
+        itemCount = 0;
+    }
 }

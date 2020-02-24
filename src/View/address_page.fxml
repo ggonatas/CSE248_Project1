@@ -86,7 +86,7 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#finalizeCheckout" text="Register Account" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Button mnemonicParsing="false" onAction="#finalizeCheckout" text="Finish Checkout" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <opaqueInsets>
                   <Insets top="5.0" />
                </opaqueInsets>
