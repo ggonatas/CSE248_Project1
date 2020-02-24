@@ -6,7 +6,6 @@ import java.io.IOException;
 import Model.*;
 import View.MainApplication;
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
